@@ -10,6 +10,6 @@ class InputTests: XCTestCase {
         let lines = inputFile.loadLines()
         
         // Assert
-        XCTAssertEqual(lines[0], "1891")
+        XCTAssertEqual(lines[0], "170")
     }
 }
