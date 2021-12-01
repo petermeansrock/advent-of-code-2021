@@ -5,15 +5,7 @@ public struct InputFile {
     
     @available(macOS 10.12, *)
     public init(day: Int) {
-        self.url = FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("Development")
-            .appendingPathComponent("Advent of Code")
-            .appendingPathComponent("2021")
-            .appendingPathComponent("Advent of Code 2021")
-            .appendingPathComponent("Library")
-            .appendingPathComponent("Inputs")
-            .appendingPathComponent("\(day)")
-            .appendingPathExtension("txt")
+        self.url = NSURL.fileURL(withPath: Bundle.module.path(forResource: "\(day)", ofType: "txt")!)
     }
     
     public func loadContents() -> String {
