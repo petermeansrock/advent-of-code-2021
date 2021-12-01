@@ -1,10 +1,3 @@
-//
-//  Sonar.swift
-//  
-//
-//  Created by Peter VanLund on 11/30/21.
-//
-
 import Foundation
 
 public struct Sonar {

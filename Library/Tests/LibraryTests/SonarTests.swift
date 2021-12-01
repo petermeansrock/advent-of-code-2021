@@ -1,10 +1,3 @@
-//
-//  SonarTests.swift
-//  
-//
-//  Created by Peter VanLund on 11/30/21.
-//
-
 import XCTest
 @testable import Library
 
