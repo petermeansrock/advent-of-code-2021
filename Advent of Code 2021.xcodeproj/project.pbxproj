@@ -6,42 +6,15 @@
 	objectVersion = 55;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		F1D926ED275727A50024537B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D926EC275727A50024537B /* main.swift */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F1D926E7275727A50024537B /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		F1D926E9275727A50024537B /* Advent of Code 2021 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Advent of Code 2021"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F1D926EC275727A50024537B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		F1D926F3275727C50024537B /* Library */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Library; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		F1D926E6275727A50024537B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		F1D926E0275727A50024537B = {
 			isa = PBXGroup;
 			children = (
-				F1D926EB275727A50024537B /* Advent of Code 2021 */,
+				F1D926F3275727C50024537B /* Library */,
 				F1D926EA275727A50024537B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,40 +22,11 @@
 		F1D926EA275727A50024537B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F1D926E9275727A50024537B /* Advent of Code 2021 */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		F1D926EB275727A50024537B /* Advent of Code 2021 */ = {
-			isa = PBXGroup;
-			children = (
-				F1D926EC275727A50024537B /* main.swift */,
-			);
-			path = "Advent of Code 2021";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		F1D926E8275727A50024537B /* Advent of Code 2021 */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F1D926F0275727A50024537B /* Build configuration list for PBXNativeTarget "Advent of Code 2021" */;
-			buildPhases = (
-				F1D926E5275727A50024537B /* Sources */,
-				F1D926E6275727A50024537B /* Frameworks */,
-				F1D926E7275727A50024537B /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Advent of Code 2021";
-			productName = "Advent of Code 2021";
-			productReference = F1D926E9275727A50024537B /* Advent of Code 2021 */;
-			productType = "com.apple.product-type.tool";
-		};
-/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F1D926E1275727A50024537B /* Project object */ = {
@@ -91,11 +35,6 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
-				TargetAttributes = {
-					F1D926E8275727A50024537B = {
-						CreatedOnToolsVersion = 13.1;
-					};
-				};
 			};
 			buildConfigurationList = F1D926E4275727A50024537B /* Build configuration list for PBXProject "Advent of Code 2021" */;
 			compatibilityVersion = "Xcode 13.0";
@@ -110,21 +49,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F1D926E8275727A50024537B /* Advent of Code 2021 */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXSourcesBuildPhase section */
-		F1D926E5275727A50024537B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F1D926ED275727A50024537B /* main.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
 		F1D926EE275727A50024537B /* Debug */ = {
@@ -242,24 +169,6 @@
 			};
 			name = Release;
 		};
-		F1D926F1275727A50024537B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		F1D926F2275727A50024537B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -268,15 +177,6 @@
 			buildConfigurations = (
 				F1D926EE275727A50024537B /* Debug */,
 				F1D926EF275727A50024537B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F1D926F0275727A50024537B /* Build configuration list for PBXNativeTarget "Advent of Code 2021" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F1D926F1275727A50024537B /* Debug */,
-				F1D926F2275727A50024537B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
