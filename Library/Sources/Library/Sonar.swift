@@ -12,22 +12,14 @@ public struct Sonar {
     }
     
     public func sweep(depths: [Int]) -> Int {
-        var increasedDepthCount = 0
-
-        for i in 1..<depths.count {
-            if depths[i] > depths[i - 1] {
-                increasedDepthCount += 1
-            }
-        }
-        
-        return increasedDepthCount
+        return zip(depths.dropFirst(), depths)
+            .map{ $0 > $1 ? 1 : 0 }
+            .reduce(0, +)
     }
     
     public func sweepMeasurementWindows(depths: [Int], windows: Int = 3) -> Int {
-        var measurementWindows = [Int]()
-        for i in 2..<depths.count {
-            measurementWindows.append(depths[i - 2] + depths[i - 1] + depths[i])
-        }
+        let measurementWindows = zip(depths.dropFirst(2), zip(depths.dropFirst(), depths))
+            .map{ $0 + $1.0 + $1.1 }
         return self.sweep(depths: measurementWindows)
     }
 }
