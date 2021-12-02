@@ -57,3 +57,34 @@ public struct Submarine {
         return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
     }
 }
+
+public struct AimedSubmarine {
+    public var position: Position
+    private var aim: Int
+    
+    public init(position: Position = Position(depth: 0, horizontalDistance: 0), aim: Int = 0) {
+        self.position = position
+        self.aim = aim
+    }
+    
+    public mutating func move(command: Command) {
+        
+        switch command.operation {
+        case .forward:
+            var depth = self.position.depth
+            var horizontalDistance = self.position.horizontalDistance
+            horizontalDistance += command.value
+            depth += self.aim * command.value
+            self.position = Position(depth: depth, horizontalDistance: horizontalDistance)
+        case .down:
+            self.aim += command.value
+        case .up:
+            self.aim -= command.value
+        }
+    }
+    
+    public mutating func move(command: String) {
+        let parts = command.components(separatedBy: " ")
+        return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
+    }
+}
