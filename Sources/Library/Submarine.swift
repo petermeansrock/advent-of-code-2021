@@ -1,5 +1,4 @@
 import Foundation
-import CoreImage
 
 public enum Action: String {
     case forward = "forward"
