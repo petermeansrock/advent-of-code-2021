@@ -1,11 +1,9 @@
-//
-//  File.swift
-//  
-//
-//  Created by Peter VanLund on 12/2/21.
-//
-
 import Foundation
+
+public enum Frequency {
+    case most
+    case least
+}
 
 public struct DiagnosticReport {
     public let gammaRate: Int
@@ -16,90 +14,62 @@ public struct DiagnosticReport {
     public let lifeSupportRate: Int
     
     public init(lines: [String]) {
-        var oneCounts: [Int] = Array(repeating: 0, count: lines[0].count)
-        for line in lines {
-            for (i, character) in Array(line).enumerated() {
-                if character == "1" {
-                    oneCounts[i] += 1
-                }
-            }
-        }
+        let linesOfCharacters = lines.map{ Array($0) }
         
-        var gammaRate = ""
-        var epsilonRate = ""
-        for value in oneCounts {
-            if value > (lines.count / 2) {
-                gammaRate += "1"
-                epsilonRate += "0"
-            } else {
-                gammaRate += "0"
-                epsilonRate += "1"
-            }
-        }
-        // Oxygen
-        var oxygenCandidates = lines.map{ Array($0) }
-        for i in 0..<lines[0].count {
-            let digits = oxygenCandidates.map{ $0[i] }
-            let ones = digits.filter{ $0 == "1" }
-            let zeros = digits.filter{ $0 == "0" }
-            
-            var winner = -1
-            if ones.count > zeros.count {
-                winner = 1
-            } else if zeros.count > ones.count {
-                winner = 0
-            } else {
-                winner = 1
-            }
-            
-            oxygenCandidates = oxygenCandidates.filter{ Int(String($0[i]))! == winner }
-            if oxygenCandidates.count == 1 {
-                break
-            }
-        }
+        (self.gammaRate, self.epsilonRate) = DiagnosticReport.determineGammaEpsilonRates(linesOfCharacters: linesOfCharacters)
+        self.oxygenRate = DiagnosticReport.determineRateByBitCriteria(linesOfCharacters: linesOfCharacters, frequency: .most, tieBreak: "1")
+        self.carbonDioxideRate = DiagnosticReport.determineRateByBitCriteria(linesOfCharacters: linesOfCharacters, frequency: .least, tieBreak: "0")
         
-        
-        // Carbon dioxide
-        var carbonDioxideCandidates = lines.map{ Array($0) }
-        for i in 0..<lines[0].count {
-            let digits = carbonDioxideCandidates.map{ $0[i] }
-            let ones = digits.filter{ $0 == "1" }
-            let zeros = digits.filter{ $0 == "0" }
-            
-            var winner = -1
-            if ones.count < zeros.count {
-                winner = 1
-            } else if zeros.count < ones.count {
-                winner = 0
-            } else {
-                winner = 0
-            }
-            
-            carbonDioxideCandidates = carbonDioxideCandidates.filter{ Int(String($0[i]))! == winner }
-            if carbonDioxideCandidates.count == 1 {
-                break
-            }
-        }
-        
-        var oxygenString = ""
-        var carbonDioxideString = ""
-        for character in oxygenCandidates[0] {
-            oxygenString += String(character)
-        }
-        for character in carbonDioxideCandidates[0] {
-            carbonDioxideString += String(character)
-        }
-        
-        // Most common, least common
-        
-//        Next, you should verify the life support rating, which can be determined by
-//        multiplying the oxygen generator rating by the CO2 scrubber rating.
-        
-        self.gammaRate = Int(gammaRate, radix: 2)!
-        self.epsilonRate = Int(epsilonRate, radix: 2)!
         self.powerConsumption = self.gammaRate * self.epsilonRate
-        self.oxygenRate = Int(oxygenString, radix: 2)!
-        self.carbonDioxideRate = Int(carbonDioxideString, radix: 2)!
         self.lifeSupportRate = self.oxygenRate * self.carbonDioxideRate
+    }
+    
+    private static func determineGammaEpsilonRates(linesOfCharacters: [[Character]]) -> (Int, Int) {
+        // Use frequency of binary digits to determine gamma rate in binary
+        var binaryGammaRate = ""
+        for i in 0..<linesOfCharacters[0].count {
+            let onesAtIndex = linesOfCharacters.map{ $0[i] }.filter{ $0 == "1" }.count
+            binaryGammaRate += (onesAtIndex > linesOfCharacters.count / 2) ? "1" : "0"
+        }
+        
+        // Invert gamma rate binary to determine epsilon rate in binary
+        let binaryEpsilonRate = Array(binaryGammaRate)
+            .map{ $0 == "1" ? "0" : "1" }
+            .reduce("", +)
+        
+        return (Int(binaryGammaRate, radix: 2)!, Int(binaryEpsilonRate, radix: 2)!)
+    }
+    
+    private static func determineRateByBitCriteria(linesOfCharacters: [[Character]], frequency: Frequency, tieBreak: Character) -> Int {
+        var candidates = linesOfCharacters
+        for i in 0..<linesOfCharacters[0].count {
+            // Create a sorted list of digit-to-count pairs
+            let digitToCounts = candidates.map{ $0[i] }.reduce(into: [:]) { counts, digit in
+                counts[digit, default: 0] += 1
+            }.sorted{ $0.1 < $1.1 }
+            
+            // Select a winning digit based on the following order:
+            // 1. If there's only a single digit used at this index, use it
+            // 2. If there's the same number of occurrences of both digits, use the tie-break value
+            // 3. If we should use least frequently used digit, grab the first key
+            // 4. If we should use the most frequently used digit, grab the last key
+            let winningDigit: Character
+            if digitToCounts.count == 1 {
+                winningDigit = digitToCounts.first!.key
+            } else if Set(digitToCounts.map{ $0.value }).count == 1 {
+                winningDigit = tieBreak
+            } else if frequency == .least {
+                winningDigit = digitToCounts.first!.key
+            } else {
+                winningDigit = digitToCounts.last!.key
+            }
+            
+            candidates = candidates.filter{ $0[i] == winningDigit }
+            if candidates.count == 1 {
+                break
+            }
+        }
+        
+        return Int(String(candidates[0]), radix: 2)!
     }
 }

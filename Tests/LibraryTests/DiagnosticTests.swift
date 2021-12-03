@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  
-//
-//  Created by Peter VanLund on 12/2/21.
-//
-
 import XCTest
 @testable import Library
 
