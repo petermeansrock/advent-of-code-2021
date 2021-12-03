@@ -15,8 +15,8 @@
 [day2-1]: Tests/LibraryTests/SubmarineTests.swift#L26-L38
 [day2-2]: Tests/LibraryTests/SubmarineTests.swift#L61-L73
 [day3]: Sources/Library/Diagnostic.swift
-[day3-1]: Tests/Library/DiagnosticTests.swift#L38
-[day3-2]: Tests/Library/DiagnosticTests.swift#L39
+[day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L38
+[day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L39
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
 [build-link]: https://github.com/petermeansrock/advent-of-code-2021/actions
