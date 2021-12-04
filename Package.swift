@@ -23,12 +23,11 @@ let package = Package(
             dependencies: [],
             resources: [
                 .process("Resources"),
-            ]),
+            ]
+        ),
         .testTarget(
             name: "LibraryTests",
-            dependencies: ["Library"],
-            resources: [
-                .copy("Resources"),
-            ]),
+            dependencies: ["Library"]
+        )
     ]
 )
