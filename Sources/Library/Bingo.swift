@@ -68,6 +68,27 @@ public struct BoardSystem {
         
         return -1
     }
+    
+    public mutating func playThroughLastBoard() -> Int {
+        var activeBoards = boards.count
+        var deadBoards = Array(repeating: false, count: boards.count)
+        for n in sequence {
+            for (i, _) in boards.enumerated() {
+                if !deadBoards[i] {
+                    if let solution = boards[i].play(number: n) {
+                        if activeBoards == 1 {
+                            return solution
+                        } else {
+                            activeBoards -= 1
+                            deadBoards[i] = true
+                        }
+                    }
+                }
+            }
+        }
+        
+        return -1
+    }
 }
 
 public struct Board {
@@ -77,7 +98,6 @@ public struct Board {
     public init(lines: [String]) {
         var numbers = Array(repeating: Array(repeating: Spot(number: -1), count: 5), count: 5)
         for (i, line) in lines.enumerated() {
-            dump(line)
             for (j, value) in line.split(separator: " ", omittingEmptySubsequences: true).map({ Int($0)! }).enumerated() {
                 numbers[i][j] = Spot(number: value)
             }
