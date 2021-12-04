@@ -94,20 +94,15 @@ public struct Board {
     }
     
     private func hasWon() -> Bool {
-        // Horizontal wins
-        for row in 0..<5 {
-            if self.numbers[row].filter({ $0.isMarked }).count == 5 {
-                return true
-            }
-        }
-        
-        // Vertical wins
-        for column in 0..<5 {
-            if self.numbers.map({ $0[column] }).filter({ $0.isMarked }).count == 5 {
-                return true
-            }
-        }
-        
-        return false
+        return self.numbers.first(where: Board.isWinningSequence) != nil // Horizontal
+            || self.numbers.columns().first(where: Board.isWinningSequence) != nil // Vertical
+    }
+    
+    /// A predicate for evaluating whether or not all spots in the array are marked.
+    ///
+    /// - Parameter spots: The spots to examine.
+    /// - Returns: True if all spots in the array are marked, false otherwise.
+    private static func isWinningSequence(in spots: [Spot]) -> Bool {
+        return spots.filter{ $0.isMarked }.count == spots.count
     }
 }
