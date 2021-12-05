@@ -45,6 +45,27 @@ public struct Position {
     }
 }
 
+public struct Submarine {
+    public var position: Position
+    private var aim: Aim
+    
+    public init(at position: Position = Position(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
+        self.position = position
+        self.aim = aim
+    }
+    
+    public mutating func move(command: Command) {
+        var aim = self.aim
+        aim.move(submarine: &self, command: command)
+        self.aim = aim
+    }
+    
+    public mutating func move(command: String) {
+        let parts = command.components(separatedBy: " ")
+        return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
+    }
+}
+
 public protocol Aim {
     mutating func move(submarine: inout Submarine, command: Command)
 }
@@ -90,26 +111,5 @@ public struct ChargingAim: Aim {
         case .up:
             self.aim -= command.value
         }
-    }
-}
-
-public struct Submarine {
-    public var position: Position
-    private var aim: Aim
-    
-    public init(at position: Position = Position(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
-        self.position = position
-        self.aim = aim
-    }
-    
-    public mutating func move(command: Command) {
-        var aim = self.aim
-        aim.move(submarine: &self, command: command)
-        self.aim = aim
-    }
-    
-    public mutating func move(command: String) {
-        let parts = command.components(separatedBy: " ")
-        return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
     }
 }
