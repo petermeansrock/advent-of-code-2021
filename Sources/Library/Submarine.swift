@@ -1,26 +1,43 @@
 import Foundation
 
+/// Represents actions that can be performed against a submarine or its aim.
 public enum Action: String {
     case forward = "forward"
     case down = "down"
     case up = "up"
 }
 
+/// Represents a command that can be performed against a submarine or its aim.
 public struct Command {
-    let operation: Action
-    let value: Int
+    /// An operation to perform as part of the command.
+    public let operation: Action
+    /// A value associated with the operation to perform.
+    public let value: Int
     
+    /// Creates a new instance.
+    ///
+    /// - Parameters:
+    ///   - operation: The operation to perform.
+    ///   - value: The value associated with the operation to perform.
     public init(operation: Action, value: Int) {
         self.operation = operation
         self.value = value
     }
 }
 
+/// Represents the position of an undersea object.
 public struct Position {
+    /// The depth below the surface.
     public let depth: Int
+    /// The horizontal distance traveled.
     public let horizontalDistance: Int
+    /// The product of the depth and horizontal distance (for the purposes of Advent of Code).
     public let product: Int
-
+    
+    /// Creates an instance.
+    /// - Parameters:
+    ///   - depth: The depth below the surface.
+    ///   - horizontalDistance: The horizontal distance traveled.
     public init(depth: Int, horizontalDistance: Int) {
         self.depth = depth
         self.horizontalDistance = horizontalDistance
