@@ -35,7 +35,7 @@ class BingoTests: XCTestCase {
         XCTAssertEqual(solution, 4512)
     }
     
-    func testBoardSystemPlayWithDay1Input() throws {
+    func testBoardSystemPlayWithDay4Input() throws {
         // Arrange
         let lines = InputFile(day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)
@@ -80,7 +80,7 @@ class BingoTests: XCTestCase {
         XCTAssertEqual(solution, 1924)
     }
     
-    func testBoardSystemPlayThroughLastBoardWithDay1Input() throws {
+    func testBoardSystemPlayThroughLastBoardWithDay4Input() throws {
         // Arrange
         let lines = InputFile(day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)

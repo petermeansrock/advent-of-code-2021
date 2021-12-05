@@ -7,6 +7,7 @@
 | 1 | [`Sonar`][day1] | Part [1][day1-1], [2][day1-2] |
 | 2 | [`Submarine`, `AimedSubmarine`][day2] | Part [1][day2-1], [2][day2-2] |
 | 3 | [`DiagnosticReport`][day3] | Part [1][day3-1], [2][day3-2] |
+| 4 | [`Board`, `BoardSystem`][day4] | Part [1][day4-1], [2][day4-2] |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L28-L38
@@ -17,6 +18,9 @@
 [day3]: Sources/Library/Diagnostic.swift
 [day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L38
 [day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L39
+[day4]: Sources/Library/Bingo.swift
+[day4-1]: Tests/LibraryTests/BingoTests.swift#L38-L48
+[day4-2]: Tests/LibraryTests/BingoTests.swift#L83-L93
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
 [build-link]: https://github.com/petermeansrock/advent-of-code-2021/actions
