@@ -10,6 +10,54 @@ public struct Spot {
     }
 }
 
+public struct Board {
+    private var numbers = [[Spot]]()
+    private var winner: Int?
+    
+    public init(lines: [String]) {
+        for line in lines {
+            let row = line
+                .split(separator: " ", omittingEmptySubsequences: true)
+                .map{ Spot(number: Int($0)!) }
+            self.numbers.append(row)
+        }
+    }
+    
+    public mutating func play(number: Int) -> Int? {
+        for i in self.numbers.indices {
+            for j in self.numbers[i].indices {
+                if self.numbers[i][j].number == number {
+                    self.numbers[i][j].isMarked = true
+                }
+            }
+        }
+        
+        if self.hasWon() {
+            let unmarkedSum = self.numbers
+                .flatMap{ $0 } // Flatten into a single sequence
+                .filter{ !$0.isMarked } // Examine only unmarked elements
+                .map{ $0.number } // Retrieve the number of each element
+                .reduce(0, +) // Sum
+            return number * unmarkedSum
+        }
+        
+        return nil
+    }
+    
+    private func hasWon() -> Bool {
+        return self.numbers.first(where: Board.isWinningSequence) != nil // Horizontal
+            || self.numbers.columns().first(where: Board.isWinningSequence) != nil // Vertical
+    }
+    
+    /// A predicate for evaluating whether or not all spots in the array are marked.
+    ///
+    /// - Parameter spots: The spots to examine.
+    /// - Returns: True if all spots in the array are marked, false otherwise.
+    private static func isWinningSequence(in spots: [Spot]) -> Bool {
+        return spots.filter{ $0.isMarked }.count == spots.count
+    }
+}
+
 public struct BoardSystem {
     private var boards: [Board]
     private let sequence: [Int]
@@ -59,53 +107,5 @@ public struct BoardSystem {
         }
         
         return -1
-    }
-}
-
-public struct Board {
-    private var numbers = [[Spot]]()
-    private var winner: Int?
-    
-    public init(lines: [String]) {
-        for line in lines {
-            let row = line
-                .split(separator: " ", omittingEmptySubsequences: true)
-                .map{ Spot(number: Int($0)!) }
-            self.numbers.append(row)
-        }
-    }
-    
-    public mutating func play(number: Int) -> Int? {
-        for i in self.numbers.indices {
-            for j in self.numbers[i].indices {
-                if self.numbers[i][j].number == number {
-                    self.numbers[i][j].isMarked = true
-                }
-            }
-        }
-        
-        if self.hasWon() {
-            let unmarkedSum = self.numbers
-                .flatMap{ $0 } // Flatten into a single sequence
-                .filter{ !$0.isMarked } // Examine only unmarked elements
-                .map{ $0.number } // Retrieve the number of each element
-                .reduce(0, +) // Sum
-            return number * unmarkedSum
-        }
-        
-        return nil
-    }
-    
-    private func hasWon() -> Bool {
-        return self.numbers.first(where: Board.isWinningSequence) != nil // Horizontal
-            || self.numbers.columns().first(where: Board.isWinningSequence) != nil // Vertical
-    }
-    
-    /// A predicate for evaluating whether or not all spots in the array are marked.
-    ///
-    /// - Parameter spots: The spots to examine.
-    /// - Returns: True if all spots in the array are marked, false otherwise.
-    private static func isWinningSequence(in spots: [Spot]) -> Bool {
-        return spots.filter{ $0.isMarked }.count == spots.count
     }
 }
