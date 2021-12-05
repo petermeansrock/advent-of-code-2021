@@ -45,33 +45,74 @@ public struct Position {
     }
 }
 
+/// A navigable submarine.
+///
+/// The movement behavior of a submarine is governed by the ``Aim`` implementation passed in during initialization.
 public struct Submarine {
+    /// The current position of the submarine.
     public var position: Position
     private var aim: Aim
     
+    /// Creates a new instance.
+    ///
+    /// - Parameters:
+    ///   - position: The initial position of the submarine.
+    ///   - aim: The aim implement which will control the submarine's movement.
     public init(at position: Position = Position(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
         self.position = position
         self.aim = aim
     }
     
+    /// Moves the submarine by delegating to its ``Aim`` implementation.
+    ///
+    /// - Parameter command: The command to use for movement.
     public mutating func move(command: Command) {
         self.position = self.aim.move(from: self.position, using: command)
     }
     
+    /// Moves the submarine by delegating to its ``Aim`` implementation.
+    ///
+    /// Examples of valid command strings include:
+    ///
+    /// ```
+    /// forward 5
+    /// down 5
+    /// forward 8
+    /// up 3
+    /// down 8
+    /// forward 2
+    /// ```
+    ///
+    /// - Parameter command: The command, as a string, to use for movement.
     public mutating func move(command: String) {
         let parts = command.components(separatedBy: " ")
         return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
     }
 }
 
+/// An aim is invoked by a submarine in order to determine its new position upon receiving a command.
 public protocol Aim {
+    /// Determines the new position of a submarine based on its starting position and command.
+    ///
+    /// - Parameters:
+    ///   - position: The starting position of the submarine.
+    ///   - command: The command to evaluate.
+    /// - Returns: The determined new position of the submarine.
     mutating func move(from position: Position, using command: Command) -> Position
 }
 
+/// An aim which immediately performs movement based on a ``Command``.
 public struct PassThroughAim: Aim {
+    /// Creates an instance.
     public init() {
     }
     
+    /// Determines the new position of a submarine based on its starting position and command.
+    ///
+    /// - Parameters:
+    ///   - position: The starting position of the submarine.
+    ///   - command: The command to evaluate.
+    /// - Returns: The determined new position of the submarine.
     public func move(from position: Position, using command: Command) -> Position {
         var depth = position.depth
         var horizontalDistance = position.horizontalDistance
@@ -89,13 +130,23 @@ public struct PassThroughAim: Aim {
     }
 }
 
+/// An aim with a stored value influenced by ``Action/up`` and ``Action/down`` commands.
 public struct ChargingAim: Aim {
     private var aim: Int
     
+    /// Creates an instance.
+    ///
+    /// - Parameter initial: The initial aim value.
     public init(initial: Int = 0) {
         self.aim = initial
     }
     
+    /// Determines the new position of a submarine based on its starting position and command.
+    ///
+    /// - Parameters:
+    ///   - position: The starting position of the submarine.
+    ///   - command: The command to evaluate.
+    /// - Returns: The determined new position of the submarine.
     public mutating func move(from position: Position, using command: Command) -> Position {
         switch command.operation {
         case .forward:
