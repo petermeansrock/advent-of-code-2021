@@ -63,17 +63,16 @@ public struct BoardSystem {
 }
 
 public struct Board {
-    private var numbers: [[Spot]]
+    private var numbers = [[Spot]]()
     private var winner: Int?
     
     public init(lines: [String]) {
-        var numbers = Array(repeating: Array(repeating: Spot(number: -1), count: 5), count: 5)
-        for (i, line) in lines.enumerated() {
-            for (j, value) in line.split(separator: " ", omittingEmptySubsequences: true).map({ Int($0)! }).enumerated() {
-                numbers[i][j] = Spot(number: value)
-            }
+        for line in lines {
+            let row = line
+                .split(separator: " ", omittingEmptySubsequences: true)
+                .map{ Spot(number: Int($0)!) }
+            self.numbers.append(row)
         }
-        self.numbers = numbers
     }
     
     public mutating func play(number: Int) -> Int? {
@@ -86,7 +85,11 @@ public struct Board {
         }
         
         if self.hasWon() {
-            let unmarkedSum = self.numbers.flatMap{ $0 }.filter{ !$0.isMarked }.map{ $0.number }.reduce(0, +)
+            let unmarkedSum = self.numbers
+                .flatMap{ $0 } // Flatten into a single sequence
+                .filter{ !$0.isMarked } // Examine only unmarked elements
+                .map{ $0.number } // Retrieve the number of each element
+                .reduce(0, +) // Sum
             return number * unmarkedSum
         }
         
