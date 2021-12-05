@@ -55,9 +55,7 @@ public struct Submarine {
     }
     
     public mutating func move(command: Command) {
-        var aim = self.aim
-        aim.move(submarine: &self, command: command)
-        self.aim = aim
+        self.position = self.aim.move(from: self.position, using: command)
     }
     
     public mutating func move(command: String) {
@@ -67,16 +65,16 @@ public struct Submarine {
 }
 
 public protocol Aim {
-    mutating func move(submarine: inout Submarine, command: Command)
+    mutating func move(from position: Position, using command: Command) -> Position
 }
 
 public struct PassThroughAim: Aim {
     public init() {
     }
     
-    public func move(submarine: inout Submarine, command: Command) {
-        var depth = submarine.position.depth
-        var horizontalDistance = submarine.position.horizontalDistance
+    public func move(from position: Position, using command: Command) -> Position {
+        var depth = position.depth
+        var horizontalDistance = position.horizontalDistance
         
         switch command.operation {
         case .forward:
@@ -87,7 +85,7 @@ public struct PassThroughAim: Aim {
             depth -= command.value
         }
         
-        submarine.position = Position(depth: depth, horizontalDistance: horizontalDistance)
+        return Position(depth: depth, horizontalDistance: horizontalDistance)
     }
 }
 
@@ -98,18 +96,20 @@ public struct ChargingAim: Aim {
         self.aim = initial
     }
     
-    public mutating func move(submarine: inout Submarine, command: Command) {
+    public mutating func move(from position: Position, using command: Command) -> Position {
         switch command.operation {
         case .forward:
-            var depth = submarine.position.depth
-            var horizontalDistance = submarine.position.horizontalDistance
+            var depth = position.depth
+            var horizontalDistance = position.horizontalDistance
             horizontalDistance += command.value
             depth += self.aim * command.value
-            submarine.position = Position(depth: depth, horizontalDistance: horizontalDistance)
+            return Position(depth: depth, horizontalDistance: horizontalDistance)
         case .down:
             self.aim += command.value
         case .up:
             self.aim -= command.value
         }
+        
+        return position
     }
 }
