@@ -76,8 +76,8 @@ public struct Board {
     }
     
     public mutating func play(number: Int) -> Int? {
-        for i in 0..<5 {
-            for j in 0..<5 {
+        for i in self.numbers.indices {
+            for j in self.numbers[i].indices {
                 if self.numbers[i][j].number == number {
                     self.numbers[i][j].isMarked = true
                 }
