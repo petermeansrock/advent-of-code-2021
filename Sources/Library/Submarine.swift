@@ -58,7 +58,7 @@ public struct Submarine {
     /// - Parameters:
     ///   - position: The initial position of the submarine.
     ///   - aim: The aim implement which will control the submarine's movement.
-    public init(at position: Position = Position(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
+    public init(at position: Position = .init(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
         self.position = position
         self.aim = aim
     }
@@ -86,7 +86,7 @@ public struct Submarine {
     /// - Parameter command: The command, as a string, to use for movement.
     public mutating func move(command: String) {
         let parts = command.components(separatedBy: " ")
-        return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
+        return move(command: .init(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
     }
 }
 
