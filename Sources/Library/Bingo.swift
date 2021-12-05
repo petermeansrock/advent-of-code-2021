@@ -21,7 +21,6 @@ public struct Spot {
 /// Represents a bingo board.
 public struct Board {
     private var numbers = [[Spot]]()
-    private var winner: Int?
     
     /// Creates a new instance.
     ///
