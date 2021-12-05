@@ -39,7 +39,7 @@ class SubmarineTests: XCTestCase {
     
     func testAimedSubmarineMoveWithSampleInput() throws {
         // Arrange
-        var submarine = AimedSubmarine()
+        var submarine = Submarine(with: ChargingAim())
         let commands = [
             "forward 5",
             "down 5",
@@ -60,7 +60,7 @@ class SubmarineTests: XCTestCase {
     
     func testAimedSubmarineMoveWithDay2Input() throws {
         // Arrange
-        var submarine = AimedSubmarine()
+        var submarine = Submarine(with: ChargingAim())
         let commands = InputFile(day: 2).loadLines().filter{ !$0.isEmpty }
         
         // Act

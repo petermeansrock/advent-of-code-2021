@@ -45,16 +45,17 @@ public struct Position {
     }
 }
 
-public struct Submarine {
-    public var position: Position
-    
-    public init(position: Position = Position(depth: 0, horizontalDistance: 0)) {
-        self.position = position
+public protocol Aim {
+    mutating func move(submarine: inout Submarine, command: Command)
+}
+
+public struct PassThroughAim: Aim {
+    public init() {
     }
     
-    public mutating func move(command: Command) {
-        var depth = self.position.depth
-        var horizontalDistance = self.position.horizontalDistance
+    public func move(submarine: inout Submarine, command: Command) {
+        var depth = submarine.position.depth
+        var horizontalDistance = submarine.position.horizontalDistance
         
         switch command.operation {
         case .forward:
@@ -65,38 +66,46 @@ public struct Submarine {
             depth -= command.value
         }
         
-        self.position = Position(depth: depth, horizontalDistance: horizontalDistance)
-    }
-    
-    public mutating func move(command: String) {
-        let parts = command.components(separatedBy: " ")
-        return move(command: Command(operation: .init(rawValue: parts[0])!, value: Int(parts[1])!))
+        submarine.position = Position(depth: depth, horizontalDistance: horizontalDistance)
     }
 }
 
-public struct AimedSubmarine {
-    public var position: Position
+public struct ChargingAim: Aim {
     private var aim: Int
     
-    public init(position: Position = Position(depth: 0, horizontalDistance: 0), aim: Int = 0) {
-        self.position = position
-        self.aim = aim
+    public init(initial: Int = 0) {
+        self.aim = initial
     }
     
-    public mutating func move(command: Command) {
-        
+    public mutating func move(submarine: inout Submarine, command: Command) {
         switch command.operation {
         case .forward:
-            var depth = self.position.depth
-            var horizontalDistance = self.position.horizontalDistance
+            var depth = submarine.position.depth
+            var horizontalDistance = submarine.position.horizontalDistance
             horizontalDistance += command.value
             depth += self.aim * command.value
-            self.position = Position(depth: depth, horizontalDistance: horizontalDistance)
+            submarine.position = Position(depth: depth, horizontalDistance: horizontalDistance)
         case .down:
             self.aim += command.value
         case .up:
             self.aim -= command.value
         }
+    }
+}
+
+public struct Submarine {
+    public var position: Position
+    private var aim: Aim
+    
+    public init(at position: Position = Position(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
+        self.position = position
+        self.aim = aim
+    }
+    
+    public mutating func move(command: Command) {
+        var aim = self.aim
+        aim.move(submarine: &self, command: command)
+        self.aim = aim
     }
     
     public mutating func move(command: String) {

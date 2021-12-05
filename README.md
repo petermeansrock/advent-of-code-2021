@@ -5,7 +5,7 @@
 | Day | Structures and Classes | Unit Test Solutions | Techniques Learned |
 | :---: | --- | --- | --- |
 | 1 | [`Sonar`][day1] | Part [1][day1-1], [2][day1-2] | [`zip` and `Arrays.dropFirst()`][zip] to create tuples of consecutive array elements |
-| 2 | [`Submarine`, `AimedSubmarine`][day2] | Part [1][day2-1], [2][day2-2] | |
+| 2 | [`Submarine`][day2] | Part [1][day2-1], [2][day2-2] | |
 | 3 | [`DiagnosticReport`][day3] | Part [1][day3-1], [2][day3-2] | |
 | 4 | [`Board`, `BoardSystem`][day4] | Part [1][day4-1], [2][day4-2] | |
 
