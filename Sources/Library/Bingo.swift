@@ -72,12 +72,19 @@ public struct Board {
         return nil
     }
     
+    /// Determine whether or not the board has reached win criteria..
+    ///
+    /// - Returns: True if the board has reached win criteria, false otherwise.
     private func hasWon() -> Bool {
-        return self.numbers.first(where: Board.isWinningSequence) != nil // Horizontal
-            || self.numbers.columns().first(where: Board.isWinningSequence) != nil // Vertical
+        return self.numbers.first(where: Board.allSpotsAreMarked) != nil // Horizontal
+            || self.numbers.columns().first(where: Board.allSpotsAreMarked) != nil // Vertical
     }
     
-    private static func isWinningSequence(in spots: [Spot]) -> Bool {
+    /// Determines whether or not all provided spots have been marked.
+    ///
+    /// - Parameter spots: The spots to examine.
+    /// - Returns: True if all provided spots are marked, false otherwise.
+    private static func allSpotsAreMarked(in spots: [Spot]) -> Bool {
         return spots.filter{ $0.isMarked }.count == spots.count
     }
 }
@@ -146,6 +153,10 @@ public struct BoardSystem {
         return self.play(through: self.boards.count)
     }
     
+    /// Plays the sequence of numbers until an arbitrary number of boards have won.
+    ///
+    /// - Parameter winningBoardCount: The number of boards to win before returning.
+    /// - Returns: `Board`.``Board/play(number:)`` of the last winning board.
     private mutating func play(through winningBoardCount: Int) -> Int? {
         var remainingBoards = winningBoardCount
         var deadBoards = Array(repeating: false, count: boards.count)
