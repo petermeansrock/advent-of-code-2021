@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Library
 
 class DiagnosticTests: XCTestCase {
@@ -18,25 +19,24 @@ class DiagnosticTests: XCTestCase {
             "00010",
             "01010",
         ]
-        
+
         // Act
         let report = DiagnosticReport(lines: lines)
-        
+
         // Assert
         XCTAssertEqual(report.powerConsumption, 198)
         XCTAssertEqual(report.lifeSupportRate, 230)
     }
-    
+
     func testDay3Input() throws {
         // Arrange
-        let lines = InputFile(day: 3).loadLines().filter{ $0.count > 0 }
-        
+        let lines = InputFile(day: 3).loadLines().filter { $0.count > 0 }
+
         // Act
         let report = DiagnosticReport(lines: lines)
-        
+
         // Assert
-        XCTAssertEqual(report.powerConsumption, 3882564)
-        XCTAssertEqual(report.lifeSupportRate, 3385170)
+        XCTAssertEqual(report.powerConsumption, 3_882_564)
+        XCTAssertEqual(report.lifeSupportRate, 3_385_170)
     }
 }
-

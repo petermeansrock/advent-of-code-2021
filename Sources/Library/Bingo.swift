@@ -6,7 +6,7 @@ public struct Spot {
     public let number: Int
     /// Whether or not this number has been called.
     public var isMarked: Bool
-    
+
     /// Creates a new instance..
     ///
     /// - Parameters:
@@ -21,7 +21,7 @@ public struct Spot {
 /// Represents a bingo board.
 public struct Board {
     private var numbers = [[Spot]]()
-    
+
     /// Creates a new instance.
     ///
     /// This constructor expects multiple strings, each representing a row of numbers. The numbers
@@ -39,13 +39,14 @@ public struct Board {
     /// - Parameter lines: The Lines representing a board.
     public init(lines: [String]) {
         for line in lines {
-            let row = line
+            let row =
+                line
                 .split(separator: " ", omittingEmptySubsequences: true)
-                .map{ Spot(number: Int($0)!) }
+                .map { Spot(number: Int($0)!) }
             self.numbers.append(row)
         }
     }
-    
+
     /// Plays a number by marking all spots with the associated number.
     ///
     /// - Parameter number: The number for which to mark matching spots.
@@ -59,33 +60,33 @@ public struct Board {
                 }
             }
         }
-        
+
         if self.hasWon() {
             let unmarkedSum = self.numbers
-                .flatMap{ $0 } // Flatten into a single sequence
-                .filter{ !$0.isMarked } // Examine only unmarked elements
-                .map{ $0.number } // Retrieve the number of each element
-                .reduce(0, +) // Sum
+                .flatMap { $0 }  // Flatten into a single sequence
+                .filter { !$0.isMarked }  // Examine only unmarked elements
+                .map { $0.number }  // Retrieve the number of each element
+                .reduce(0, +)  // Sum
             return number * unmarkedSum
         }
-        
+
         return nil
     }
-    
+
     /// Determine whether or not the board has reached win criteria..
     ///
     /// - Returns: True if the board has reached win criteria, false otherwise.
     private func hasWon() -> Bool {
-        return self.numbers.first(where: Board.allSpotsAreMarked) != nil // Horizontal
-            || self.numbers.columns().first(where: Board.allSpotsAreMarked) != nil // Vertical
+        return self.numbers.first(where: Board.allSpotsAreMarked) != nil  // Horizontal
+            || self.numbers.columns().first(where: Board.allSpotsAreMarked) != nil  // Vertical
     }
-    
+
     /// Determines whether or not all provided spots have been marked.
     ///
     /// - Parameter spots: The spots to examine.
     /// - Returns: True if all provided spots are marked, false otherwise.
     private static func allSpotsAreMarked(in spots: [Spot]) -> Bool {
-        return spots.filter{ $0.isMarked }.count == spots.count
+        return spots.filter { $0.isMarked }.count == spots.count
     }
 }
 
@@ -93,7 +94,7 @@ public struct Board {
 public struct BoardSystem {
     private var boards: [Board]
     private let sequence: [Int]
-    
+
     /// Creates a new instance.
     ///
     /// This constructor expects input composed of two pieces, delimited by an empty line of data:
@@ -138,21 +139,21 @@ public struct BoardSystem {
             }
         }
     }
-    
+
     /// Plays the sequence of numbers until the first board wins.
     ///
     /// - Returns: `Board`.``Board/play(number:)`` of the first winnig board.
     public mutating func play() -> Int? {
         return self.play(through: 1)
     }
-    
+
     /// Plays the sequence of numbers until the last board wins.
     ///
     /// - Returns: `Board`.``Board/play(number:)`` of the last winning board.
     public mutating func playThroughLastBoard() -> Int? {
         return self.play(through: self.boards.count)
     }
-    
+
     /// Plays the sequence of numbers until an arbitrary number of boards have won.
     ///
     /// - Parameter winningBoardCount: The number of boards to win before returning.
@@ -174,7 +175,7 @@ public struct BoardSystem {
                 }
             }
         }
-        
+
         return nil
     }
 }

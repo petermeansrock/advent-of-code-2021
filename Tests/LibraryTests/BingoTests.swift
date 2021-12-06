@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import Library
 
 class BingoTests: XCTestCase {
@@ -27,26 +28,26 @@ class BingoTests: XCTestCase {
             "",
         ]
         var boardSystem = BoardSystem(lines: lines)
-        
+
         // Act
         let solution = boardSystem.play()
-        
+
         // Assert
         XCTAssertEqual(solution, 4512)
     }
-    
+
     func testBoardSystemPlayWithDay4Input() throws {
         // Arrange
         let lines = InputFile(day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)
-        
+
         // Act
         let solution = boardSystem.play()
-        
+
         // Assert
         XCTAssertEqual(solution, 55770)
     }
-    
+
     func testBoardSystemPlayThroughLastBoardWithSampleInput() throws {
         // Arrange
         let lines = [
@@ -72,22 +73,22 @@ class BingoTests: XCTestCase {
             "",
         ]
         var boardSystem = BoardSystem(lines: lines)
-        
+
         // Act
         let solution = boardSystem.playThroughLastBoard()
-        
+
         // Assert
         XCTAssertEqual(solution, 1924)
     }
-    
+
     func testBoardSystemPlayThroughLastBoardWithDay4Input() throws {
         // Arrange
         let lines = InputFile(day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)
-        
+
         // Act
         let solution = boardSystem.playThroughLastBoard()
-        
+
         // Assert
         XCTAssertEqual(solution, 2980)
     }

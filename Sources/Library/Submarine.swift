@@ -13,7 +13,7 @@ public struct Command {
     public let operation: Action
     /// A value associated with the operation to perform.
     public let value: Int
-    
+
     /// Creates a new instance.
     ///
     /// - Parameters:
@@ -33,7 +33,7 @@ public struct Position {
     public let horizontalDistance: Int
     /// The product of the depth and horizontal distance (for the purposes of Advent of Code).
     public let product: Int
-    
+
     /// Creates an instance.
     /// - Parameters:
     ///   - depth: The depth below the surface.
@@ -52,24 +52,27 @@ public struct Submarine {
     /// The current position of the submarine.
     public var position: Position
     private var aim: Aim
-    
+
     /// Creates a new instance.
     ///
     /// - Parameters:
     ///   - position: The initial position of the submarine.
     ///   - aim: The aim implement which will control the submarine's movement.
-    public init(at position: Position = .init(depth: 0, horizontalDistance: 0), with aim: Aim = PassThroughAim()) {
+    public init(
+        at position: Position = .init(depth: 0, horizontalDistance: 0),
+        with aim: Aim = PassThroughAim()
+    ) {
         self.position = position
         self.aim = aim
     }
-    
+
     /// Moves the submarine by delegating to its ``Aim`` implementation.
     ///
     /// - Parameter command: The command to use for movement.
     public mutating func move(command: Command) {
         self.position = self.aim.move(from: self.position, using: command)
     }
-    
+
     /// Moves the submarine by delegating to its ``Aim`` implementation.
     ///
     /// Examples of valid command strings include:
@@ -106,7 +109,7 @@ public struct PassThroughAim: Aim {
     /// Creates an instance.
     public init() {
     }
-    
+
     /// Determines the new position of a submarine based on its starting position and command.
     ///
     /// - Parameters:
@@ -116,7 +119,7 @@ public struct PassThroughAim: Aim {
     public func move(from position: Position, using command: Command) -> Position {
         var depth = position.depth
         var horizontalDistance = position.horizontalDistance
-        
+
         switch command.operation {
         case .forward:
             horizontalDistance += command.value
@@ -125,7 +128,7 @@ public struct PassThroughAim: Aim {
         case .up:
             depth -= command.value
         }
-        
+
         return Position(depth: depth, horizontalDistance: horizontalDistance)
     }
 }
@@ -133,14 +136,14 @@ public struct PassThroughAim: Aim {
 /// An aim with a stored value influenced by ``Action/up`` and ``Action/down`` commands.
 public struct ChargingAim: Aim {
     private var aim: Int
-    
+
     /// Creates an instance.
     ///
     /// - Parameter initial: The initial aim value.
     public init(initial: Int = 0) {
         self.aim = initial
     }
-    
+
     /// Determines the new position of a submarine based on its starting position and command.
     ///
     /// - Parameters:
@@ -160,7 +163,7 @@ public struct ChargingAim: Aim {
         case .up:
             self.aim -= command.value
         }
-        
+
         return position
     }
 }

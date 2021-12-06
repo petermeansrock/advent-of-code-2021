@@ -5,7 +5,7 @@ public struct Sonar {
     /// Creates a new instance.
     public init() {
     }
-    
+
     /// Performs a sweep of the ocean depths.
     ///
     /// Returns the number of times the ocean depth increases from one depth value to the next. For
@@ -43,10 +43,10 @@ public struct Sonar {
     /// - Returns: The number of times the ocean depth increases from one depth value to the next.
     public func sweep(depths: [Int]) -> Int {
         return zip(depths.dropFirst(), depths)
-            .map{ $0 > $1 ? 1 : 0 }
+            .map { $0 > $1 ? 1 : 0 }
             .reduce(0, +)
     }
-    
+
     /// Performs a sweep of the ocean depths considering measurement windows.
     ///
     /// Returns the number of times each measurement window, representing the sum of a consecutive
@@ -86,7 +86,7 @@ public struct Sonar {
     ///   the next.
     public func sweepMeasurementWindows(depths: [Int], windowSize: Int = 3) -> Int {
         let measurementWindows = zip(depths.dropFirst(2), zip(depths.dropFirst(), depths))
-            .map{ $0 + $1.0 + $1.1 }
+            .map { $0 + $1.0 + $1.1 }
         return self.sweep(depths: measurementWindows)
     }
 }
