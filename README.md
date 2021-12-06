@@ -12,17 +12,17 @@
 | 6 | [`Spawner`][day6] | Part [1][day6-1], [2][day6-2] | |
 
 [day1]: Sources/Library/Sonar.swift
-[day1-1]: Tests/LibraryTests/SonarTests.swift#L28-L38
-[day1-2]: Tests/LibraryTests/SonarTests.swift#L63-L73
+[day1-1]: Tests/LibraryTests/SonarTests.swift#L29-L39
+[day1-2]: Tests/LibraryTests/SonarTests.swift#L64-L74
 [day2]: Sources/Library/Submarine.swift
-[day2-1]: Tests/LibraryTests/SubmarineTests.swift#L26-L38
-[day2-2]: Tests/LibraryTests/SubmarineTests.swift#L61-L73
+[day2-1]: Tests/LibraryTests/SubmarineTests.swift#L27-L39
+[day2-2]: Tests/LibraryTests/SubmarineTests.swift#L62-L74
 [day3]: Sources/Library/Diagnostic.swift
-[day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L38
-[day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L39
+[day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L39
+[day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L40
 [day4]: Sources/Library/Bingo.swift
-[day4-1]: Tests/LibraryTests/BingoTests.swift#L38-L48
-[day4-2]: Tests/LibraryTests/BingoTests.swift#L83-L93
+[day4-1]: Tests/LibraryTests/BingoTests.swift#L39-L49
+[day4-2]: Tests/LibraryTests/BingoTests.swift#L84-L94
 [day5]: Sources/Library/Geometry.swift
 [day5-1]: Tests/LibraryTests/GeometryTests.swift#L255-L272
 [day5-2]: Tests/LibraryTests/GeometryTests.swift#L304-L321
