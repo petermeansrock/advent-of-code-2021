@@ -8,6 +8,7 @@
 | 2 | [`Submarine`][day2] | Part [1][day2-1], [2][day2-2] | Using [implicit member expression and exteral/internal parameter naming][expressions] |
 | 3 | [`DiagnosticReport`][day3] | Part [1][day3-1], [2][day3-2] | |
 | 4 | [`Board`, `BoardSystem`][day4] | Part [1][day4-1], [2][day4-2] | |
+| 5 | [][day5] | Part [1][day5-1], [2][day5-2] | |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L28-L38
@@ -21,6 +22,9 @@
 [day4]: Sources/Library/Bingo.swift
 [day4-1]: Tests/LibraryTests/BingoTests.swift#L38-L48
 [day4-2]: Tests/LibraryTests/BingoTests.swift#L83-L93
+[day5]: Sources/Library/Geometry.swift
+[day5-1]: Tests/LibraryTests/GeometryTests.swift#L255-L272
+[day5-2]: Tests/LibraryTests/GeometryTests.swift#L304-L321
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L61
