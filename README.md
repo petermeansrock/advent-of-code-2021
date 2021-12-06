@@ -31,7 +31,7 @@
 [day6-2]: Tests/LibraryTests/SpawnerTests.swift#L51-L60
 
 [zip]: Sources/Library/Sonar.swift#L45
-[expressions]: Sources/Library/Submarine.swift#L61
+[expressions]: Sources/Library/Submarine.swift#L62
 [errors]: Sources/Library/Geometry.swift#L137-L142
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
