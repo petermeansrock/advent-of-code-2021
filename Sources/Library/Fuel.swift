@@ -69,15 +69,48 @@ public struct FuelOptimizer {
         let countsByPosition = positions.reduce(into: [:]) { counts, position in
             counts[position, default: 0] += 1
         }
-        let minPosition = countsByPosition.map { $0.key }.min()!
-        let maxPosition = countsByPosition.map { $0.key }.max()!
 
-        // For each candidate end position
-        return (minPosition...maxPosition).map { endPosition in
-            determineFuelCost(for: endPosition, considering: countsByPosition)
+        // Perform a binary search for the minimum fuel cost as the costs should fall into a
+        // continuum
+        var leftPosition = countsByPosition.map { $0.key }.min()!
+        var rightPosition = countsByPosition.map { $0.key }.max()!
+        while leftPosition <= rightPosition {
+            // Find the midpoint of the current range
+            let centerPosition = (leftPosition + rightPosition) / 2
+
+            // Handle scenarios where there are too few positions remaining to continue binary
+            // searching
+            if leftPosition == centerPosition && centerPosition == rightPosition {
+                // If we are down to one position, simply return the cost
+                return determineFuelCost(for: centerPosition, considering: countsByPosition)
+            } else if centerPosition == leftPosition || centerPosition == rightPosition {
+                // If we are down to two positions, return the lower of the two costs
+                return min(
+                    determineFuelCost(for: leftPosition, considering: countsByPosition),
+                    determineFuelCost(for: rightPosition, considering: countsByPosition)
+                )
+            }
+
+            // Consider three consecutive positions to determine whether to search left, right, or
+            // return early
+            let left = determineFuelCost(for: centerPosition - 1, considering: countsByPosition)
+            let center = determineFuelCost(for: centerPosition, considering: countsByPosition)
+            let right = determineFuelCost(for: centerPosition + 1, considering: countsByPosition)
+
+            if left < center {
+                // Move our search to the left side of the remaining positions
+                rightPosition = centerPosition - 1
+            } else if right < center {
+                // Move our search to the right side of the remaining positions
+                leftPosition = centerPosition + 1
+            } else {
+                // Return early since we've already found the minimum
+                return center
+            }
         }
-        // Before finding the minimum cost of all candidate end positions
-        .min()!
+
+        // The following line should not be reachable
+        fatalError("There is a bug in the logic above")
     }
 
     /// Calculates the fuel cost for a single candidate end position.
