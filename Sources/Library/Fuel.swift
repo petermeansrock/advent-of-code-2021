@@ -61,17 +61,17 @@ public struct FuelOptimizer {
     public init(positions: [Int], fuelEfficiency: FuelEfficiency) {
         // Reduce the list of positions into an array indexed by the position and containing the
         // number of entities at each position
-        let maxPosition = positions.max()!
-        let emptyArray = Array(repeating: 0, count: maxPosition + 1)
-        let countsByPosition = positions.reduce(into: emptyArray) { counts, position in
-            counts[position] += 1
+        let countsByPosition = positions.reduce(into: [:]) { counts, position in
+            counts[position, default: 0] += 1
         }
+        let minPosition = countsByPosition.map { $0.key }.min()!
+        let maxPosition = countsByPosition.map { $0.key }.max()!
 
         // For each candidate end position
-        self.minimumFuel = countsByPosition.indices.map { endPosition in
+        self.minimumFuel = (minPosition...maxPosition).map { endPosition in
             // Calculate the cost of moving each group to the candidate end position (accounting for
             // fuel efficiency)
-            countsByPosition.enumerated().map { position, count in
+            countsByPosition.map { position, count in
                 fuelEfficiency.cost(across: abs(endPosition - position)) * count
             }
             // Summing the cost across positions to determine the cost for this candidate end
