@@ -74,16 +74,26 @@ public struct FuelOptimizer {
 
         // For each candidate end position
         return (minPosition...maxPosition).map { endPosition in
-            // Calculate the cost of moving each group to the candidate end position (accounting for
-            // fuel efficiency)
-            countsByPosition.map { position, count in
-                self.fuelEfficiency.cost(across: abs(endPosition - position)) * count
-            }
-            // Summing the cost across positions to determine the cost for this candidate end
-            // position
-            .reduce(0, +)
+            determineFuelCost(for: endPosition, considering: countsByPosition)
         }
         // Before finding the minimum cost of all candidate end positions
         .min()!
+    }
+
+    /// Calculates the fuel cost for a single candidate end position.
+    ///
+    /// - Parameters:
+    ///   - endPosition: A candidate end position for all entities.
+    ///   - countsByPosition: A map from starting positions to the count of entities at each
+    ///     position.
+    /// - Returns: The fuel cost to move all entities to a single candidate end position.
+    private func determineFuelCost(for endPosition: Int, considering countsByPosition: [Int: Int])
+        -> Int
+    {
+        // Calculate the cost of moving each group to the candidate end position (accounting for
+        // fuel efficiency)
+        return countsByPosition.map { position, count in
+            self.fuelEfficiency.cost(across: abs(endPosition - position)) * count
+        }.reduce(0, +)  // Summing across the cost of all source positions
     }
 }
