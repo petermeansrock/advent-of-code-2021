@@ -30,7 +30,7 @@
 [day6]: Sources/Library/Spawner.swift
 [day6-1]: Tests/LibraryTests/SpawnerTests.swift#L40-L49
 [day6-2]: Tests/LibraryTests/SpawnerTests.swift#L51-L60
-[day7]: Sources/Library/Fueld.swift
+[day7]: Sources/Library/Fuel.swift
 [day7-1]: Tests/LibraryTests/FuelTests.swift#L17-L28
 [day7-2]: Tests/LibraryTests/FuelTests.swift#L42-L54
 
