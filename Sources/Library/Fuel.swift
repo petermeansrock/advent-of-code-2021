@@ -60,7 +60,7 @@ public struct FuelOptimizer {
     ///     individual entities.
     public init(positions: [Int], fuelEfficiency: FuelEfficiency) {
         // Reduce the list of positions into an array indexed by the position and containing the
-        // value at each position
+        // number of entities at each position
         let maxPosition = positions.max()!
         let emptyArray = Array(repeating: 0, count: maxPosition + 1)
         let countsByPosition = positions.reduce(into: emptyArray) { counts, position in
