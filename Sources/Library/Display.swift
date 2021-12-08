@@ -161,7 +161,7 @@ public struct SevenSegmentDisplay {
         // We can then derive the one character set for ["b"]
         let b = bd.subtracting(d)
 
-        // The remaining uknown digits include:
+        // The remaining unknown digits include:
         //
         // 2 = ["a", "c", "d", "e", "g"] missing ["b", "f"]
         // 3 = ["a", "c", "d", "f", "g"] missing ["b", "e"]
