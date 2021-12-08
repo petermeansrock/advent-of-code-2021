@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -30,7 +31,7 @@ class DiagnosticTests: XCTestCase {
 
     func testDay3Input() throws {
         // Arrange
-        let lines = InputFile(day: 3).loadLines().filter { $0.count > 0 }
+        let lines = InputFile(bundle: Bundle.module, day: 3).loadLines().filter { $0.count > 0 }
 
         // Act
         let report = DiagnosticReport(lines: lines)

@@ -13,31 +13,31 @@
 | 7 | [`FuelOptimizer`, `FuelEfficiency`][day7] | Part [1][day7-1], [2][day7-2] | Calling [`fatalError`][fatal] for unreachable code |
 
 [day1]: Sources/Library/Sonar.swift
-[day1-1]: Tests/LibraryTests/SonarTests.swift#L29-L39
-[day1-2]: Tests/LibraryTests/SonarTests.swift#L64-L74
+[day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
+[day1-2]: Tests/LibraryTests/SonarTests.swift#L65-L75
 [day2]: Sources/Library/Submarine.swift
-[day2-1]: Tests/LibraryTests/SubmarineTests.swift#L27-L39
-[day2-2]: Tests/LibraryTests/SubmarineTests.swift#L62-L74
+[day2-1]: Tests/LibraryTests/SubmarineTests.swift#L28-L40
+[day2-2]: Tests/LibraryTests/SubmarineTests.swift#L63-L75
 [day3]: Sources/Library/Diagnostic.swift
-[day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L39
-[day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L40
+[day3-1]: Tests/LibraryTests/DiagnosticTests.swift#L40
+[day3-2]: Tests/LibraryTests/DiagnosticTests.swift#L41
 [day4]: Sources/Library/Bingo.swift
-[day4-1]: Tests/LibraryTests/BingoTests.swift#L39-L49
-[day4-2]: Tests/LibraryTests/BingoTests.swift#L84-L94
-[day5]: Sources/Library/Geometry.swift
-[day5-1]: Tests/LibraryTests/GeometryTests.swift#L255-L272
-[day5-2]: Tests/LibraryTests/GeometryTests.swift#L304-L321
+[day4-1]: Tests/LibraryTests/BingoTests.swift#L40-L50
+[day4-2]: Tests/LibraryTests/BingoTests.swift#L85-L95
+[day5]: https://github.com/petermeansrock/advent-of-code-swift/blob/main/Sources/AdventOfCode/Geometry.swift
+[day5-1]: Tests/LibraryTests/GeometryTests.swift#L7-L24
+[day5-2]: Tests/LibraryTests/GeometryTests.swift#L26-L43
 [day6]: Sources/Library/Spawner.swift
-[day6-1]: Tests/LibraryTests/SpawnerTests.swift#L42-L52
-[day6-2]: Tests/LibraryTests/SpawnerTests.swift#L54-L64
+[day6-1]: Tests/LibraryTests/SpawnerTests.swift#L43-L55
+[day6-2]: Tests/LibraryTests/SpawnerTests.swift#L57-L69
 [day7]: Sources/Library/Fuel.swift
-[day7-1]: Tests/LibraryTests/FuelTests.swift#L17-L28
-[day7-2]: Tests/LibraryTests/FuelTests.swift#L42-L54
+[day7-1]: Tests/LibraryTests/FuelTests.swift#L19-L33
+[day7-2]: Tests/LibraryTests/FuelTests.swift#L47-L61
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
 [reduce-into]: Sources/Library/Diagnostic.swift#L62-L63
-[errors]: Sources/Library/Geometry.swift#L137-L142
+[errors]: https://github.com/petermeansrock/advent-of-code-swift/blob/main/Sources/AdventOfCode/Geometry.swift#L137-L142
 [fatal]: Sources/Library/Fuel.swift#L113
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg

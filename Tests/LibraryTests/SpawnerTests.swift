@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -42,7 +43,9 @@ class SpawnerTests: XCTestCase {
     func testSpawnFor80DaysWithDay6Input() {
         // Arrange
         let spawner = Spawner()
-        let values = InputFile(day: 6).loadLines()[0].components(separatedBy: ",").map { Int($0)! }
+        let values = InputFile(bundle: Bundle.module, day: 6).loadLines()[0].components(
+            separatedBy: ","
+        ).map { Int($0)! }
 
         // Act
         let count = spawner.spawn(with: values, through: 80, every: 7, plus: 2)
@@ -54,7 +57,9 @@ class SpawnerTests: XCTestCase {
     func testSpawnFor256DaysWithDay6Input() {
         // Arrange
         let spawner = Spawner()
-        let values = InputFile(day: 6).loadLines()[0].components(separatedBy: ",").map { Int($0)! }
+        let values = InputFile(bundle: Bundle.module, day: 6).loadLines()[0].components(
+            separatedBy: ","
+        ).map { Int($0)! }
 
         // Act
         let count = spawner.spawn(with: values, through: 256, every: 7, plus: 2)

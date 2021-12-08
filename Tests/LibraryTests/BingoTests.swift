@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -38,7 +39,7 @@ class BingoTests: XCTestCase {
 
     func testBoardSystemPlayWithDay4Input() throws {
         // Arrange
-        let lines = InputFile(day: 4).loadLines()
+        let lines = InputFile(bundle: Bundle.module, day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)
 
         // Act
@@ -83,7 +84,7 @@ class BingoTests: XCTestCase {
 
     func testBoardSystemPlayThroughLastBoardWithDay4Input() throws {
         // Arrange
-        let lines = InputFile(day: 4).loadLines()
+        let lines = InputFile(bundle: Bundle.module, day: 4).loadLines()
         var boardSystem = BoardSystem(lines: lines)
 
         // Act

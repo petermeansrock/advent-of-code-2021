@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -18,7 +19,9 @@ class FuelOptimizerTests: XCTestCase {
     func testDay7InputWithFlatFuelEfficiency() {
         // Arrange
         let optimizer = FuelOptimizer(fuelEfficiency: FlatFuelEfficiency())
-        let positions = InputFile(day: 7).loadLines()[0].components(separatedBy: ",").map {
+        let positions = InputFile(bundle: Bundle.module, day: 7).loadLines()[0].components(
+            separatedBy: ","
+        ).map {
             Int($0)!
         }
 
@@ -44,7 +47,9 @@ class FuelOptimizerTests: XCTestCase {
     func testDay7InputWithLinearlyDecreasingFuelEfficiency() {
         // Arrange
         let optimizer = FuelOptimizer(fuelEfficiency: LinearlyDecreasingFuelEfficiency())
-        let positions = InputFile(day: 7).loadLines()[0].components(separatedBy: ",").map {
+        let positions = InputFile(bundle: Bundle.module, day: 7).loadLines()[0].components(
+            separatedBy: ","
+        ).map {
             Int($0)!
         }
 

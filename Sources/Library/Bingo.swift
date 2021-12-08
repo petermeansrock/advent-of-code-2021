@@ -1,3 +1,4 @@
+import AdventOfCode
 import Foundation
 
 /// Represents a single spot on a bingo board which can be marked when a number is selected.

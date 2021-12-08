@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -27,7 +28,7 @@ class SubmarineTests: XCTestCase {
     func testSubmarineMoveWithDay2Input() throws {
         // Arrange
         var submarine = Submarine()
-        let commands = InputFile(day: 2).loadLines().filter { !$0.isEmpty }
+        let commands = InputFile(bundle: Bundle.module, day: 2).loadLines().filter { !$0.isEmpty }
 
         // Act
         for command in commands {
@@ -62,7 +63,7 @@ class SubmarineTests: XCTestCase {
     func testAimedSubmarineMoveWithDay2Input() throws {
         // Arrange
         var submarine = Submarine(with: ChargingAim())
-        let commands = InputFile(day: 2).loadLines().filter { !$0.isEmpty }
+        let commands = InputFile(bundle: Bundle.module, day: 2).loadLines().filter { !$0.isEmpty }
 
         // Act
         for command in commands {

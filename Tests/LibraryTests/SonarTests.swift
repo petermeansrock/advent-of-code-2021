@@ -1,3 +1,4 @@
+import AdventOfCode
 import XCTest
 
 @testable import Library
@@ -29,7 +30,7 @@ class SonarTests: XCTestCase {
     func testSweepDay1Input() throws {
         // Arrange
         let sonar = Sonar()
-        let depths = InputFile(day: 1).loadLines().compactMap { Int($0) }
+        let depths = InputFile(bundle: Bundle.module, day: 1).loadLines().compactMap { Int($0) }
 
         // Act
         let count = sonar.sweep(depths: depths)
@@ -64,7 +65,7 @@ class SonarTests: XCTestCase {
     func testSweepMeasurementWindowsDay1Input() throws {
         // Arrange
         let sonar = Sonar()
-        let depths = InputFile(day: 1).loadLines().compactMap { Int($0) }
+        let depths = InputFile(bundle: Bundle.module, day: 1).loadLines().compactMap { Int($0) }
 
         // Act
         let count = sonar.sweepMeasurementWindows(depths: depths)
