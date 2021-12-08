@@ -6,7 +6,7 @@
 | :---: | --- | --- | --- |
 | 1 | [`Sonar`][day1] | Part [1][day1-1], [2][day1-2] | Creating tuples of consecutive array elements with [`zip` and `Arrays.dropFirst()`][zip] |
 | 2 | [`Submarine`][day2] | Part [1][day2-1], [2][day2-2] | Using [implicit member expression and exteral/internal parameter naming][expressions] |
-| 3 | [`DiagnosticReport`][day3] | Part [1][day3-1], [2][day3-2] | |
+| 3 | [`DiagnosticReport`][day3] | Part [1][day3-1], [2][day3-2] | Accumulating into a dictionary with [`reduce(into: \[:\])`][reduce-into] |
 | 4 | [`Board`, `BoardSystem`][day4] | Part [1][day4-1], [2][day4-2] | |
 | 5 | [`Plot`, `LineSegment`, `Coordinate`][day5] | Part [1][day5-1], [2][day5-2] | [Error handling][errors] |
 | 6 | [`Spawner`][day6] | Part [1][day6-1], [2][day6-2] | None |
@@ -36,6 +36,7 @@
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
+[reduce-into]: Sources/Library/Diagnostic.swift#L62-L63
 [errors]: Sources/Library/Geometry.swift#L137-L142
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
