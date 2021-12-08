@@ -1,18 +1,28 @@
 import Foundation
 
-public enum Frequency {
+private enum Frequency {
     case most
     case least
 }
 
+/// Represents a diagnostic report.
 public struct DiagnosticReport {
+    /// The gamma rate.
     public let gammaRate: Int
+    /// The epsilon rate.
     public let epsilonRate: Int
+    /// The power consumption.
     public let powerConsumption: Int
+    /// The oxygen rate.
     public let oxygenRate: Int
+    /// The carbon dioxide rate.
     public let carbonDioxideRate: Int
+    /// The life support rate.
     public let lifeSupportRate: Int
 
+    /// Decodes a diagnostic report based on string input.
+    ///
+    /// - Parameter lines: The report encoded as a string.
     public init(lines: [String]) {
         let linesOfCharacters = lines.map { Array($0) }
 
