@@ -28,8 +28,8 @@
 [day5-1]: Tests/LibraryTests/GeometryTests.swift#L255-L272
 [day5-2]: Tests/LibraryTests/GeometryTests.swift#L304-L321
 [day6]: Sources/Library/Spawner.swift
-[day6-1]: Tests/LibraryTests/SpawnerTests.swift#L40-L49
-[day6-2]: Tests/LibraryTests/SpawnerTests.swift#L51-L60
+[day6-1]: Tests/LibraryTests/SpawnerTests.swift#L42-L52
+[day6-2]: Tests/LibraryTests/SpawnerTests.swift#L54-L64
 [day7]: Sources/Library/Fuel.swift
 [day7-1]: Tests/LibraryTests/FuelTests.swift#L17-L28
 [day7-2]: Tests/LibraryTests/FuelTests.swift#L42-L54

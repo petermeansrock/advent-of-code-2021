@@ -1,10 +1,9 @@
 import Foundation
 
 public struct Spawner {
-    public let count: Int
-
-    public init(with initialGroups: [Int], through days: Int, every cycle: Int, plus childhood: Int)
-    {
+    public func spawn(
+        with initialGroups: [Int], through days: Int, every cycle: Int, plus childhood: Int
+    ) -> Int {
         // This is the maximum value we will ever expect for a single spawned entity
         let initialSpawnValue = (cycle - 1) + childhood
 
@@ -42,6 +41,6 @@ public struct Spawner {
         }
 
         // Calculcate the sum of the final day
-        self.count = previousDay.reduce(0, +)
+        return previousDay.reduce(0, +)
     }
 }
