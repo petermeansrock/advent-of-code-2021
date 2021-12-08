@@ -35,8 +35,8 @@
 [day7-1]: Tests/LibraryTests/FuelTests.swift#L19-L33
 [day7-2]: Tests/LibraryTests/FuelTests.swift#L47-L61
 [day8]: Sources/Library/Display.swift
-[day8-1]: Tests/LibraryTests/DisplayTests#L48-L74
-[day8-2]: Tests/LibraryTests/DisplayTests#L118-L131
+[day8-1]: Tests/LibraryTests/DisplayTests.swift#L48-L74
+[day8-2]: Tests/LibraryTests/DisplayTests.swift#L118-L131
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
