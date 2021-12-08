@@ -11,6 +11,7 @@
 | 5 | [`Plot`, `LineSegment`, `Coordinate`][day5] | Part [1][day5-1], [2][day5-2] | [Error handling][errors] |
 | 6 | [`Spawner`][day6] | Part [1][day6-1], [2][day6-2] | None |
 | 7 | [`FuelOptimizer`, `FuelEfficiency`][day7] | Part [1][day7-1], [2][day7-2] | Calling [`fatalError`][fatal] for unreachable code |
+| 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | None
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -33,6 +34,9 @@
 [day7]: Sources/Library/Fuel.swift
 [day7-1]: Tests/LibraryTests/FuelTests.swift#L19-L33
 [day7-2]: Tests/LibraryTests/FuelTests.swift#L47-L61
+[day8]: Sources/Library/Display.swift
+[day8-1]: Tests/LibraryTests/DisplayTests#L48-L74
+[day8-2]: Tests/LibraryTests/DisplayTests#L118-L131
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
