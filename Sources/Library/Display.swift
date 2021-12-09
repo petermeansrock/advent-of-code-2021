@@ -45,7 +45,8 @@ public enum SevenSegmentDigit: Int, CaseIterable {
     }
 }
 
-/// A signal pattern contains a list of scrambled signals, each representing a different ``SevenSegmentDigit``.
+/// A signal pattern contains a list of scrambled signals, each representing a different
+/// ``SevenSegmentDigit``.
 public struct SignalPattern {
     /// The list of scrambled signals comprising the pattern.
     public let signals: [Set<Character>]
@@ -65,7 +66,8 @@ public struct OutputValue {
     public let signals: [Set<Character>]
 }
 
-/// A seven segment display contains a scrambled output value that can only be unscrambled using the provided signal pattern.
+/// A seven segment display contains a scrambled output value that can only be unscrambled using the
+/// provided signal pattern.
 public struct SevenSegmentDisplay {
     /// The signal pattern for this display.
     public let signalPattern: SignalPattern
@@ -79,7 +81,9 @@ public struct SevenSegmentDisplay {
 
     /// Creates a new instance.
     ///
-    /// The provided string should consist of 9 scrambled signals (representing the signal pattern), followed by a pipe, followed by 4 scrambled signals (representing the output value). For example:
+    /// The provided string should consist of 9 scrambled signals (representing the signal pattern),
+    /// followed by a pipe, followed by 4 scrambled signals (representing the output value). For
+    /// example:
     ///
     /// ```
     /// acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf
@@ -99,6 +103,16 @@ public struct SevenSegmentDisplay {
     ///
     /// - Returns: The output value as number.
     public func unscramble() -> Int {
+        // NOTE: The variable names throughout this method may seem a bit arcane, but they
+        //       all follow the same pattern:
+        //       - Each variable's type is Set<Character>, where the set contains scrambled segments
+        //         as characters, from "a" through "g".
+        //       - They begin with one or more letters from lettered segments, from "a" through "g".
+        //         These letters represent the *unscrambled* segments encoded within the variable's
+        //         value.
+        //       - They will end with an integer, from 0 through 9, if the set represents a sevent-
+        //         segment digit of that value.
+
         // Fetch scrambled sets of characters for the following unambigous numbers:
         //
         // 1 = ["c", "f"]
@@ -126,12 +140,12 @@ public struct SevenSegmentDisplay {
         // 6 = ["a", "b", "d", "e", "f", "g"] missing ["c"]
         // 9 = ["a", "b", "c", "d", "f", "g"] missing ["e"]
         //
-        // We can start by looping through all six digit scrambled sets and use their intersections with
-        // known sets to determine their values. Specifically:
+        // We can start by looping through all six digit scrambled sets and use their intersections
+        // with known sets to determine their values. Specifically:
         //
         // 6 = ["a", "b", "d", "e", "f", "g"] intersection with ["c", "f"] will equal ["f"]
         // 9 = ["a", "b", "c", "d", "f", "g"] intersection with ["e", "g"] will equal ["g"]
-        // 0 = ["a", "b", "c", "e", "f", "g"] intersection with both of the above will contain two elements.
+        // 0 = ["a", "b", "c", "e", "f", "g"] intersection with the same sets will contain two items
         //
         // These same intersections against
         var f: Set<Character> = []
