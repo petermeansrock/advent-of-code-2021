@@ -11,7 +11,7 @@
 | 5 | [`Plot`, `LineSegment`, `Coordinate`][day5] | Part [1][day5-1], [2][day5-2] | [Error handling][errors] |
 | 6 | [`Spawner`][day6] | Part [1][day6-1], [2][day6-2] | None |
 | 7 | [`FuelOptimizer`, `FuelEfficiency`][day7] | Part [1][day7-1], [2][day7-2] | Calling [`fatalError`][fatal] for unreachable code |
-| 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | None
+| 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | [Package vending][vending], [dependency specification][dependency], and [dependency pinning][pinning]
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -43,6 +43,9 @@
 [reduce-into]: Sources/Library/Diagnostic.swift#L62-L63
 [errors]: https://github.com/petermeansrock/advent-of-code-swift/blob/main/Sources/AdventOfCode/Geometry.swift#L137-L142
 [fatal]: Sources/Library/Fuel.swift#L113
+[vending]: https://github.com/petermeansrock/advent-of-code-swift/releases
+[dependency]: Package.swift#L14-L26
+[pinning]: Package.resolved
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
 [build-link]: https://github.com/petermeansrock/advent-of-code-2021/actions
