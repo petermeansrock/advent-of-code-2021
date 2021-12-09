@@ -12,6 +12,7 @@
 | 6 | [`Spawner`][day6] | Part [1][day6-1], [2][day6-2] | None |
 | 7 | [`FuelOptimizer`, `FuelEfficiency`][day7] | Part [1][day7-1], [2][day7-2] | Calling [`fatalError`][fatal] for unreachable code |
 | 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | [Package vending][vending], [dependency specification][dependency], and [dependency pinning][pinning]
+| 9 | [`OceanFloor`, `Basin`][day9] | Part [1][day9-1], [2][day9-2] | [Marking methods with `@discardableResult`][discardable] to avoid compile-time warnings about unused return values
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -37,6 +38,9 @@
 [day8]: Sources/Library/Display.swift
 [day8-1]: Tests/LibraryTests/DisplayTests.swift#L48-L74
 [day8-2]: Tests/LibraryTests/DisplayTests.swift#L118-L131
+[day9]: Sources/Library/Floor.swift
+[day9-1]: Tests/LibraryTests/FloorTests.swift#L44-L73
+[day9-2]: Tests/LibraryTests/FloorTests.swift#L44-L73
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
@@ -46,6 +50,7 @@
 [vending]: https://github.com/petermeansrock/advent-of-code-swift/releases
 [dependency]: Package.swift#L14-L26
 [pinning]: Package.resolved
+[discardable]: Sources/Library/Floor.swift#L31-L48
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
 [build-link]: https://github.com/petermeansrock/advent-of-code-2021/actions
