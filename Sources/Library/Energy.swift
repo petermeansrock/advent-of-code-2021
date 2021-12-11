@@ -71,8 +71,7 @@ public class EnergySimulator {
                     grid[neighbor.row][neighbor.column] += 1
 
                     if grid[neighbor.row][neighbor.column] > 9 {
-                        flashQueue.enqueue(
-                            TwoDimensionalPoint(row: neighbor.row, column: neighbor.column))
+                        flashQueue.enqueue(neighbor)
                     }
                 }
             }
