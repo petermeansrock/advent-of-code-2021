@@ -1,6 +1,6 @@
 import Foundation
 
-internal struct Point: Equatable, Hashable {
+internal struct ThreeDimensionalPoint: Equatable, Hashable {
     let row: Int
     let column: Int
     let height: Int
@@ -11,25 +11,40 @@ internal struct Point: Equatable, Hashable {
         hasher.combine(self.height)
     }
 
-    static func == (lhs: Point, rhs: Point) -> Bool {
+    static func == (lhs: ThreeDimensionalPoint, rhs: ThreeDimensionalPoint) -> Bool {
         return lhs.row == rhs.row && lhs.column == rhs.column && lhs.height == rhs.height
+    }
+}
+
+internal struct TwoDimensionalPoint: Equatable, Hashable {
+    let row: Int
+    let column: Int
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.row)
+        hasher.combine(self.column)
+    }
+
+    static func == (lhs: TwoDimensionalPoint, rhs: TwoDimensionalPoint) -> Bool {
+        return lhs.row == rhs.row && lhs.column == rhs.column
     }
 }
 
 /// A queue that remembers items previously enqueued to it, ignoring attempts to enqueue the same
 /// it again.
 internal struct VisitedQueue<T: Hashable> {
+    /// The set of uniquely enqueued items.
+    public private(set) var visited = Set<T>()
     private var queue = [T]()
-    private var set = Set<T>()
     var isEmpty: Bool {
         return queue.isEmpty
     }
     var enqueuedCount: Int {
-        return set.count
+        return visited.count
     }
 
     @discardableResult mutating func enqueue(_ item: T) -> Bool {
-        if set.insert(item).inserted {
+        if visited.insert(item).inserted {
             queue.append(item)
             return true
         } else {
@@ -97,7 +112,7 @@ public struct OceanFloor {
         for i in grid.indices {
             for j in grid[i].indices {
                 // Create point for coordinates
-                let point = Point(row: i, column: j, height: self.grid[i][j])
+                let point = ThreeDimensionalPoint(row: i, column: j, height: self.grid[i][j])
 
                 // Find all neighbors
                 let neighbors = self.neighbors(point: point)
@@ -120,8 +135,8 @@ public struct OceanFloor {
         return basins
     }
 
-    private func neighbors(point: Point) -> [Point] {
-        var neighbors = [Point]()
+    private func neighbors(point: ThreeDimensionalPoint) -> [ThreeDimensionalPoint] {
+        var neighbors = [ThreeDimensionalPoint]()
 
         // Consider all neighbors horizontally or vertically adjacent to the specified point
         for (i, j) in [
@@ -131,17 +146,17 @@ public struct OceanFloor {
             (point.row, point.column + 1),
         ] {
             if self.grid.indices.contains(i) && self.grid[i].indices.contains(j) {
-                neighbors.append(Point(row: i, column: j, height: self.grid[i][j]))
+                neighbors.append(ThreeDimensionalPoint(row: i, column: j, height: self.grid[i][j]))
             }
         }
         return neighbors
     }
 
-    private func determineBasinSize(lowPoint: Point) -> Int {
+    private func determineBasinSize(lowPoint: ThreeDimensionalPoint) -> Int {
         // Use a special purpose queue that (1) will ignore attempts to enqueue the same point twice
         // and (2) will keep track of all unique points ever enqueued. This will allow us to enqueue
         // neighbors without checking whether each one has been visited before.
-        var queue = VisitedQueue<Point>()
+        var queue = VisitedQueue<ThreeDimensionalPoint>()
         queue.enqueue(lowPoint)
 
         while !queue.isEmpty {

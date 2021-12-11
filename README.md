@@ -14,6 +14,7 @@
 | 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | [Package vending][vending], [dependency specification][dependency], and [dependency pinning][pinning]
 | 9 | [`OceanFloor`, `Basin`][day9] | Part [1][day9-1], [2][day9-2] | [Marking methods with `@discardableResult`][discardable] to avoid compile-time warnings about unused return values
 | 10 | [`ChunkLineParser`][day10] | Part [1][day10-1], [2][day10-2] | [Defining][enum-associated-define], [instantiating][enum-associated-init], and [consuming][enum-associated-consume] enumerations with associated values
+| 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -45,6 +46,9 @@
 [day10]: Sources/Library/Syntax.swift
 [day10-1]: Tests/LibraryTests/SyntaxTests.swift#L41-L62
 [day10-2]: Tests/LibraryTests/SyntaxTests.swift#L99-L121
+[day11]: Sources/Library/Energy.swift
+[day11-1]: Tests/LibraryTests/EnergyTests.swift#L32-L45
+[day11-2]: Tests/LibraryTests/EnergyTests.swift#L72-L85
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
@@ -54,7 +58,7 @@
 [vending]: https://github.com/petermeansrock/advent-of-code-swift/releases
 [dependency]: Package.swift#L14-L26
 [pinning]: Package.resolved
-[discardable]: Sources/Library/Floor.swift#L31-L48
+[discardable]: Sources/Library/Floor.swift#L46-L63
 [enum-associated-define]: Sources/Library/Syntax.swift#L71-L89
 [enum-associated-init]: Sources/Library/Syntax.swift#L106
 [enum-associated-consume]: Tests/LibraryTests/SyntaxTests.swift#L28-L33
