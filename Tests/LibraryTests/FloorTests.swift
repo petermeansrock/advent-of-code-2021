@@ -6,21 +6,14 @@ import XCTest
 class FloorTests: XCTestCase {
     func testFindBasinsWithSampleInput() {
         // Arrange
-        let lines = """
+        let grid = """
             2199943210
             3987894921
             9856789892
             8767896789
             9899965678
             """.components(separatedBy: .newlines)
-        var grid = [[Int]]()
-        for line in lines {
-            var row = [Int]()
-            for c in Array(line) {
-                row.append(Int(String(c))!)
-            }
-            grid.append(row)
-        }
+            .map { Array($0).map { $0.wholeNumberValue! } }
         let oceanFloor = OceanFloor(grid: grid)
 
         // Act
@@ -43,15 +36,9 @@ class FloorTests: XCTestCase {
 
     func testFindBasinsWithDay9Input() {
         // Arrange
-        let lines = InputFile(bundle: Bundle.module, day: 9).loadLines().filter { $0.count > 0 }
-        var grid = [[Int]]()
-        for line in lines {
-            var row = [Int]()
-            for c in Array(line) {
-                row.append(Int(String(c))!)
-            }
-            grid.append(row)
-        }
+        let grid = InputFile(bundle: Bundle.module, day: 9).loadLines()
+            .filter { $0.count > 0 }
+            .map { Array($0).map { $0.wholeNumberValue! } }
         let oceanFloor = OceanFloor(grid: grid)
 
         // Act

@@ -41,8 +41,8 @@
 [day8-1]: Tests/LibraryTests/DisplayTests.swift#L48-L74
 [day8-2]: Tests/LibraryTests/DisplayTests.swift#L118-L131
 [day9]: Sources/Library/Floor.swift
-[day9-1]: Tests/LibraryTests/FloorTests.swift#L44-L73
-[day9-2]: Tests/LibraryTests/FloorTests.swift#L44-L73
+[day9-1]: Tests/LibraryTests/FloorTests.swift#L37-L60
+[day9-2]: Tests/LibraryTests/FloorTests.swift#L37-L60
 [day10]: Sources/Library/Syntax.swift
 [day10-1]: Tests/LibraryTests/SyntaxTests.swift#L41-L62
 [day10-2]: Tests/LibraryTests/SyntaxTests.swift#L99-L121
