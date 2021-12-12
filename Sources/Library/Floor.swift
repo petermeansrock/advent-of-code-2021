@@ -1,20 +1,5 @@
+import AdventOfCode
 import Foundation
-
-internal struct ThreeDimensionalPoint: Equatable, Hashable {
-    let row: Int
-    let column: Int
-    let height: Int
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.row)
-        hasher.combine(self.column)
-        hasher.combine(self.height)
-    }
-
-    static func == (lhs: ThreeDimensionalPoint, rhs: ThreeDimensionalPoint) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column && lhs.height == rhs.height
-    }
-}
 
 /// A queue that remembers items previously enqueued to it, ignoring attempts to enqueue the same
 /// it again.
@@ -98,7 +83,7 @@ public struct OceanFloor {
         for i in grid.indices {
             for j in grid[i].indices {
                 // Create point for coordinates
-                let point = ThreeDimensionalPoint(row: i, column: j, height: self.grid[i][j])
+                let point = ThreeDimensionalPoint(x: j, y: i, z: self.grid[i][j])
 
                 // Find all neighbors
                 let neighbors = self.neighbors(point: point)
@@ -106,12 +91,12 @@ public struct OceanFloor {
                 // Find all neighbors taller than the current point
                 let tallerNeighbors =
                     neighbors
-                    .filter { $0.height > point.height }
+                    .filter { $0.z > point.z }
 
                 // If all neighbors are taller, we've found a low point (and thus, a basin)
                 if tallerNeighbors.count == neighbors.count {
                     // Determine the basin's risk level and size
-                    let riskLevel = point.height + 1
+                    let riskLevel = point.z + 1
                     let size = determineBasinSize(lowPoint: point)
                     basins.append(Basin(riskLevel: riskLevel, size: size))
                 }
@@ -121,34 +106,34 @@ public struct OceanFloor {
         return basins
     }
 
-    private func neighbors(point: ThreeDimensionalPoint) -> [ThreeDimensionalPoint] {
-        var neighbors = [ThreeDimensionalPoint]()
+    private func neighbors(point: ThreeDimensionalPoint<Int>) -> [ThreeDimensionalPoint<Int>] {
+        var neighbors = [ThreeDimensionalPoint<Int>]()
 
         // Consider all neighbors horizontally or vertically adjacent to the specified point
         for (i, j) in [
-            (point.row - 1, point.column),
-            (point.row + 1, point.column),
-            (point.row, point.column - 1),
-            (point.row, point.column + 1),
+            (point.y - 1, point.x),
+            (point.y + 1, point.x),
+            (point.y, point.x - 1),
+            (point.y, point.x + 1),
         ] {
             if self.grid.indices.contains(i) && self.grid[i].indices.contains(j) {
-                neighbors.append(ThreeDimensionalPoint(row: i, column: j, height: self.grid[i][j]))
+                neighbors.append(ThreeDimensionalPoint(x: j, y: i, z: self.grid[i][j]))
             }
         }
         return neighbors
     }
 
-    private func determineBasinSize(lowPoint: ThreeDimensionalPoint) -> Int {
+    private func determineBasinSize(lowPoint: ThreeDimensionalPoint<Int>) -> Int {
         // Use a special purpose queue that (1) will ignore attempts to enqueue the same point twice
         // and (2) will keep track of all unique points ever enqueued. This will allow us to enqueue
         // neighbors without checking whether each one has been visited before.
-        var queue = VisitedQueue<ThreeDimensionalPoint>()
+        var queue = VisitedQueue<ThreeDimensionalPoint<Int>>()
         queue.enqueue(lowPoint)
 
         while !queue.isEmpty {
             let point = queue.dequeue()
             let traversableNeighbors = self.neighbors(point: point)
-                .filter { $0.height < 9 }
+                .filter { $0.z < 9 }
             queue.enqueueAll(traversableNeighbors)
         }
 
