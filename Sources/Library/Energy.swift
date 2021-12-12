@@ -1,3 +1,4 @@
+import AdventOfCode
 import Foundation
 
 /// Simulates steps of energy growth and distribution among a two-dimensional space of entities.
@@ -49,7 +50,7 @@ public class EnergySimulator {
 
         // Iterate through steps
         for _ in 1...steps {
-            var flashQueue = VisitedQueue<TwoDimensionalPoint>()
+            var flashQueue = VisitedQueue<TwoDimensionalPoint<Int>>()
 
             // Perform initial pass to increase all energy levels
             for i in grid.indices {
@@ -57,7 +58,7 @@ public class EnergySimulator {
                     grid[i][j] += 1
 
                     if grid[i][j] == 10 {
-                        flashQueue.enqueue(TwoDimensionalPoint(row: i, column: j))
+                        flashQueue.enqueue(TwoDimensionalPoint(x: j, y: i))
                     }
                 }
             }
@@ -68,9 +69,9 @@ public class EnergySimulator {
                 let neighbors = EnergySimulator.neighbors(grid: grid, point: point)
 
                 for neighbor in neighbors {
-                    grid[neighbor.row][neighbor.column] += 1
+                    grid[neighbor.y][neighbor.x] += 1
 
-                    if grid[neighbor.row][neighbor.column] > 9 {
+                    if grid[neighbor.y][neighbor.x] > 9 {
                         flashQueue.enqueue(neighbor)
                     }
                 }
@@ -78,7 +79,7 @@ public class EnergySimulator {
 
             // Set flashed points back to zero
             for flashedPoint in flashQueue.visited {
-                grid[flashedPoint.row][flashedPoint.column] = 0
+                grid[flashedPoint.y][flashedPoint.x] = 0
             }
 
             flashCount += flashQueue.enqueuedCount
@@ -87,19 +88,19 @@ public class EnergySimulator {
         return flashCount
     }
 
-    private static func neighbors(grid: [[Int]], point: TwoDimensionalPoint)
-        -> [TwoDimensionalPoint]
+    private static func neighbors(grid: [[Int]], point: TwoDimensionalPoint<Int>)
+        -> [TwoDimensionalPoint<Int>]
     {
-        var neighbors = [TwoDimensionalPoint]()
+        var neighbors = [TwoDimensionalPoint<Int>]()
 
         // Consider all neighbors horizontally, vertically, or diagonally adjacent to specified point
         for di in -1...1 {
             for dj in -1...1 {
                 if !(di == 0 && dj == 0) {
-                    let i = point.row + di
-                    let j = point.column + dj
+                    let i = point.y + di
+                    let j = point.x + dj
                     if grid.indices.contains(i) && grid[i].indices.contains(j) {
-                        neighbors.append(TwoDimensionalPoint(row: i, column: j))
+                        neighbors.append(TwoDimensionalPoint(x: j, y: i))
                     }
                 }
             }

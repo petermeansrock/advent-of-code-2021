@@ -16,20 +16,6 @@ internal struct ThreeDimensionalPoint: Equatable, Hashable {
     }
 }
 
-internal struct TwoDimensionalPoint: Equatable, Hashable {
-    let row: Int
-    let column: Int
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.row)
-        hasher.combine(self.column)
-    }
-
-    static func == (lhs: TwoDimensionalPoint, rhs: TwoDimensionalPoint) -> Bool {
-        return lhs.row == rhs.row && lhs.column == rhs.column
-    }
-}
-
 /// A queue that remembers items previously enqueued to it, ignoring attempts to enqueue the same
 /// it again.
 internal struct VisitedQueue<T: Hashable> {
