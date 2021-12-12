@@ -86,7 +86,9 @@ public struct OceanFloor {
                 let point = ThreeDimensionalPoint(x: j, y: i, z: self.grid[i][j])
 
                 // Find all neighbors
-                let neighbors = self.neighbors(point: point)
+                let neighbors = self.grid.neighbors(
+                    row: point.y, column: point.x, adjacencies: Set([.horizontal, .vertical])
+                ).map { ThreeDimensionalPoint(x: $0.column, y: $0.row, z: $0.value) }
 
                 // Find all neighbors taller than the current point
                 let tallerNeighbors =
@@ -106,23 +108,6 @@ public struct OceanFloor {
         return basins
     }
 
-    private func neighbors(point: ThreeDimensionalPoint<Int>) -> [ThreeDimensionalPoint<Int>] {
-        var neighbors = [ThreeDimensionalPoint<Int>]()
-
-        // Consider all neighbors horizontally or vertically adjacent to the specified point
-        for (i, j) in [
-            (point.y - 1, point.x),
-            (point.y + 1, point.x),
-            (point.y, point.x - 1),
-            (point.y, point.x + 1),
-        ] {
-            if self.grid.indices.contains(i) && self.grid[i].indices.contains(j) {
-                neighbors.append(ThreeDimensionalPoint(x: j, y: i, z: self.grid[i][j]))
-            }
-        }
-        return neighbors
-    }
-
     private func determineBasinSize(lowPoint: ThreeDimensionalPoint<Int>) -> Int {
         // Use a special purpose queue that (1) will ignore attempts to enqueue the same point twice
         // and (2) will keep track of all unique points ever enqueued. This will allow us to enqueue
@@ -132,8 +117,10 @@ public struct OceanFloor {
 
         while !queue.isEmpty {
             let point = queue.dequeue()
-            let traversableNeighbors = self.neighbors(point: point)
-                .filter { $0.z < 9 }
+            let traversableNeighbors = self.grid.neighbors(
+                row: point.y, column: point.x, adjacencies: Set([.horizontal, .vertical])
+            ).map { ThreeDimensionalPoint(x: $0.column, y: $0.row, z: $0.value) }
+            .filter { $0.z < 9 }
             queue.enqueueAll(traversableNeighbors)
         }
 
