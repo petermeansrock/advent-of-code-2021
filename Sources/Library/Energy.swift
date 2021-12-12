@@ -66,7 +66,9 @@ public class EnergySimulator {
             // Evaluate flashes
             while !flashQueue.isEmpty {
                 let point = flashQueue.dequeue()
-                let neighbors = EnergySimulator.neighbors(grid: grid, point: point)
+                let neighbors = grid.neighbors(
+                    row: point.y, column: point.x, adjacencies: Set(Adjacency.allCases)
+                ).map { TwoDimensionalPoint(x: $0.column, y: $0.row) }
 
                 for neighbor in neighbors {
                     grid[neighbor.y][neighbor.x] += 1
@@ -86,26 +88,5 @@ public class EnergySimulator {
         }
 
         return flashCount
-    }
-
-    private static func neighbors(grid: [[Int]], point: TwoDimensionalPoint<Int>)
-        -> [TwoDimensionalPoint<Int>]
-    {
-        var neighbors = [TwoDimensionalPoint<Int>]()
-
-        // Consider all neighbors horizontally, vertically, or diagonally adjacent to specified point
-        for di in -1...1 {
-            for dj in -1...1 {
-                if !(di == 0 && dj == 0) {
-                    let i = point.y + di
-                    let j = point.x + dj
-                    if grid.indices.contains(i) && grid[i].indices.contains(j) {
-                        neighbors.append(TwoDimensionalPoint(x: j, y: i))
-                    }
-                }
-            }
-        }
-
-        return neighbors
     }
 }
