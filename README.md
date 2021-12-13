@@ -15,6 +15,7 @@
 | 9 | [`OceanFloor`, `Basin`][day9] | Part [1][day9-1], [2][day9-2] | [Marking methods with `@discardableResult`][discardable] to avoid compile-time warnings about unused return values
 | 10 | [`ChunkLineParser`][day10] | Part [1][day10-1], [2][day10-2] | [Defining][enum-associated-define], [instantiating][enum-associated-init], and [consuming][enum-associated-consume] enumerations with associated values
 | 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | Generating a [changelog][changelog] by running [`npx standard-version`][standard-version]
+| 12 | [`CaveNetwork`][day12] | Part [1][day12-1], [2][day12-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -49,6 +50,9 @@
 [day11]: Sources/Library/Energy.swift
 [day11-1]: Tests/LibraryTests/EnergyTests.swift#L32-L45
 [day11-2]: Tests/LibraryTests/EnergyTests.swift#L72-L85
+[day12]: Sources/Library/Cave.swift
+[day12-1]: Tests/LibraryTests/CaveTests.swift#L81-L91
+[day12-2]: Tests/LibraryTests/CaveTests.swift#L167-L177
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62

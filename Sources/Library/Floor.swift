@@ -120,7 +120,7 @@ public struct OceanFloor {
             let traversableNeighbors = self.grid.neighbors(
                 row: point.y, column: point.x, adjacencies: Set([.horizontal, .vertical])
             ).map { ThreeDimensionalPoint(x: $0.column, y: $0.row, z: $0.value) }
-            .filter { $0.z < 9 }
+                .filter { $0.z < 9 }
             queue.enqueueAll(traversableNeighbors)
         }
 
