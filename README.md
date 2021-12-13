@@ -14,7 +14,7 @@
 | 8 | [`SevenSegmentDisplay`][day8] | Part [1][day8-1], [2][day8-2] | [Package vending][vending], [dependency specification][dependency], and [dependency pinning][pinning]
 | 9 | [`OceanFloor`, `Basin`][day9] | Part [1][day9-1], [2][day9-2] | [Marking methods with `@discardableResult`][discardable] to avoid compile-time warnings about unused return values
 | 10 | [`ChunkLineParser`][day10] | Part [1][day10-1], [2][day10-2] | [Defining][enum-associated-define], [instantiating][enum-associated-init], and [consuming][enum-associated-consume] enumerations with associated values
-| 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | None |
+| 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | Generating a [changelog][changelog] by running [`npx standard-version`][standard-version]
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -62,6 +62,8 @@
 [enum-associated-define]: Sources/Library/Syntax.swift#L71-L89
 [enum-associated-init]: Sources/Library/Syntax.swift#L106
 [enum-associated-consume]: Tests/LibraryTests/SyntaxTests.swift#L28-L33
+[changelog]: https://github.com/petermeansrock/advent-of-code-swift/blob/main/CHANGELOG.md
+[standard-version]: https://github.com/conventional-changelog/standard-version
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
 [build-link]: https://github.com/petermeansrock/advent-of-code-2021/actions
