@@ -16,6 +16,7 @@
 | 10 | [`ChunkLineParser`][day10] | Part [1][day10-1], [2][day10-2] | [Defining][enum-associated-define], [instantiating][enum-associated-init], and [consuming][enum-associated-consume] enumerations with associated values
 | 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | Generating a [changelog][changelog] by running [`npx standard-version`][standard-version]
 | 12 | [`CaveNetwork`][day12] | Part [1][day12-1], [2][day12-2] | None |
+| 13 | [`Paper`][day13] | Part [1][day13-1], [2][day13-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -53,6 +54,9 @@
 [day12]: Sources/Library/Cave.swift
 [day12-1]: Tests/LibraryTests/CaveTests.swift#L81-L91
 [day12-2]: Tests/LibraryTests/CaveTests.swift#L167-L177
+[day13]: Sources/Library/Paper.swift
+[day13-1]: Tests/LibraryTests/PaperTests.swift#L160-L173
+[day13-2]: Tests/LibraryTests/PaperTests.swift#L224-L246
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
