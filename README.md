@@ -18,6 +18,7 @@
 | 12 | [`CaveNetwork`][day12] | Part [1][day12-1], [2][day12-2] | None |
 | 13 | [`Paper`][day13] | Part [1][day13-1], [2][day13-2] | None |
 | 14 | [`PairInsertionRuleEvaluator`][day14] | Part [1][day14-1], [2][day14-2] | None |
+| 15 | [`WeightedGraph`][day15] | Part [1][day15-1], [2][day15-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -61,6 +62,9 @@
 [day14]: Sources/Library/Polymer.swift
 [day14-1]: Tests/LibraryTests/PolymerTests.swift#L65-L73
 [day14-2]: Tests/LibraryTests/PolymerTests.swift#L75-L83
+[day15]: Sources/Library/Chiton.swift
+[day15-1]: Tests/LibraryTests/ChitonTests.swift#L49-L61
+[day15-2]: Tests/LibraryTests/ChitonTests.swift#L87-L99
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
