@@ -14,6 +14,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/petermeansrock/advent-of-code-swift.git", from: "1.0.0"),
+        .package(url: "https://github.com/apple/swift-collections.git", from: "1.0.0"),
         .package(url: "https://github.com/davecom/SwiftPriorityQueue.git", from: "1.3.0"),
     ],
     targets: [
@@ -23,6 +24,7 @@ let package = Package(
             name: "Library",
             dependencies: [
                 .product(name: "AdventOfCode", package: "advent-of-code-swift"),
+                .product(name: "Collections", package: "swift-collections"),
                 .product(name: "SwiftPriorityQueue", package: "SwiftPriorityQueue"),
             ]
         ),
