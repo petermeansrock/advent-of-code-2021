@@ -1,3 +1,4 @@
+import Collections
 import Foundation
 
 /// Represents a navigable cave.
@@ -136,7 +137,7 @@ public struct CaveNetwork {
 
         var completePaths = [Path]()
 
-        var queue = [PathWithCave]()
+        var queue = Deque<PathWithCave>()
         queue.append(PathWithCave(path: startPath, cave: start))
         while !queue.isEmpty {
             let pathWithCave = queue.removeFirst()
