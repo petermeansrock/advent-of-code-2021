@@ -1,4 +1,5 @@
 import AdventOfCode
+import Collections
 import Foundation
 
 /// A queue that remembers items previously enqueued to it, ignoring attempts to enqueue the same
@@ -6,7 +7,7 @@ import Foundation
 internal struct VisitedQueue<T: Hashable> {
     /// The set of uniquely enqueued items.
     public private(set) var visited = Set<T>()
-    private var queue = [T]()
+    private var queue = Deque<T>()
     var isEmpty: Bool {
         return queue.isEmpty
     }

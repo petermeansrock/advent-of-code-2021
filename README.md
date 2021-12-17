@@ -78,7 +78,7 @@
 [vending]: https://github.com/petermeansrock/advent-of-code-swift/releases
 [dependency]: Package.swift#L14-L26
 [pinning]: Package.resolved
-[discardable]: Sources/Library/Floor.swift#L46-L63
+[discardable]: Sources/Library/Floor.swift#L17-L34
 [enum-associated-define]: Sources/Library/Syntax.swift#L71-L89
 [enum-associated-init]: Sources/Library/Syntax.swift#L106
 [enum-associated-consume]: Tests/LibraryTests/SyntaxTests.swift#L28-L33
