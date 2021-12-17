@@ -90,7 +90,16 @@ public struct WeightedGraph {
         while !unvisitedNodesWithCost.isEmpty {
             // Start on unvisited node with shortest distance
             let currentNode = unvisitedNodesWithCost.pop()!
-            allUnvisitedNodes.remove(TwoDimensionalPoint(x: currentNode.x, y: currentNode.y))
+
+            // To speed up the solution, upon determining a more efficient path from the start, a
+            // duplicate point will be inserted into the priority queue `unvisitedNodesWithCost`.
+            // For this reason, we have to perform a separate check to confirm that the point
+            // dequeued hasn't already been visited
+            if allUnvisitedNodes.remove(TwoDimensionalPoint(x: currentNode.x, y: currentNode.y))
+                == nil
+            {
+                continue
+            }
 
             if currentNode.y == self.grid.endIndex - 1 && currentNode.x == self.grid[0].endIndex - 1
             {
@@ -114,12 +123,9 @@ public struct WeightedGraph {
                     shortestPathFromStart[currentNode.y][currentNode.x]
                     + self.grid[neighbor.y][neighbor.x]
 
-                // If this new tentative distance is shorter, save it and update the neighbor's
-                // weight in the priority queue
+                // If this new tentative distance is shorter, save it and add the neighbor's new
+                // distance to the priority queue (which may duplicate the point)
                 if tentativeDistance < previousDistance {
-                    unvisitedNodesWithCost.remove(
-                        TwoDimensionalPointWithWeight(
-                            x: neighbor.x, y: neighbor.y, weight: previousDistance))
                     unvisitedNodesWithCost.push(
                         TwoDimensionalPointWithWeight(
                             x: neighbor.x, y: neighbor.y, weight: tentativeDistance))
