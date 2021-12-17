@@ -15,7 +15,7 @@
 | 9 | [`OceanFloor`, `Basin`][day9] | Part [1][day9-1], [2][day9-2] | [Marking methods with `@discardableResult`][discardable] to avoid compile-time warnings about unused return values
 | 10 | [`ChunkLineParser`][day10] | Part [1][day10-1], [2][day10-2] | [Defining][enum-associated-define], [instantiating][enum-associated-init], and [consuming][enum-associated-consume] enumerations with associated values
 | 11 | [`EnergySimulator`][day11] | Part [1][day11-1], [2][day11-2] | Generating a [changelog][changelog] by running [`npx standard-version`][standard-version]
-| 12 | [`CaveNetwork`][day12] | Part [1][day12-1], [2][day12-2] | None |
+| 12 | [`CaveNetwork`][day12] | Part [1][day12-1], [2][day12-2] | Profiling with Xcode's Instruments app to identity and [fix inefficient algorithms][profiling] |
 | 13 | [`Paper`][day13] | Part [1][day13-1], [2][day13-2] | None |
 | 14 | [`PairInsertionRuleEvaluator`][day14] | Part [1][day14-1], [2][day14-2] | None |
 | 15 | [`WeightedGraph`][day15] | Part [1][day15-1], [2][day15-2] | None |
@@ -84,6 +84,7 @@
 [enum-associated-consume]: Tests/LibraryTests/SyntaxTests.swift#L28-L33
 [changelog]: https://github.com/petermeansrock/advent-of-code-swift/blob/main/CHANGELOG.md
 [standard-version]: https://github.com/conventional-changelog/standard-version
+[profiling]: https://github.com/petermeansrock/advent-of-code-2021/pull/10
 [defer]: Sources/Library/Packet.swift#L252
 
 [build-badge]: https://github.com/petermeansrock/advent-of-code-2021/actions/workflows/swift.yml/badge.svg
