@@ -20,6 +20,7 @@
 | 14 | [`PairInsertionRuleEvaluator`][day14] | Part [1][day14-1], [2][day14-2] | None |
 | 15 | [`WeightedGraph`][day15] | Part [1][day15-1], [2][day15-2] | None |
 | 16 | [`PacketParser`][day16] | Part [1][day16-1], [2][day16-2] | Postponing the evaluation of logic with [`defer`][defer] until the current scope ends
+| 17 | [`Cannon`][day17] | Part [1][day17-1], [2][day17-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -69,6 +70,9 @@
 [day16]: Sources/Library/Packet.swift
 [day16-1]: Tests/LibraryTests/PacketTests.swift#L106
 [day16-2]: Tests/LibraryTests/PacketTests.swift#L107
+[day17]: Sources/Library/Trajectory.swift
+[day17-1]: Tests/LibraryTests/TrajectoryTests.swift#L33
+[day17-2]: Tests/LibraryTests/TrajectoryTests.swift#L34
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
