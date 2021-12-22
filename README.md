@@ -21,6 +21,7 @@
 | 15 | [`WeightedGraph`][day15] | Part [1][day15-1], [2][day15-2] | None |
 | 16 | [`PacketParser`][day16] | Part [1][day16-1], [2][day16-2] | Postponing the evaluation of logic with [`defer`][defer] until the current scope ends
 | 17 | [`Cannon`][day17] | Part [1][day17-1], [2][day17-2] | None |
+| 18 | [`SnailfishNumber`][day18] | Part [1][day18-1], [2][day18-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -73,6 +74,9 @@
 [day17]: Sources/Library/Trajectory.swift
 [day17-1]: Tests/LibraryTests/TrajectoryTests.swift#L33
 [day17-2]: Tests/LibraryTests/TrajectoryTests.swift#L34
+[day18]: Sources/Library/Snailfish.swift
+[day18-1]: Tests/LibraryTests/SnailfishTests.swift
+[day18-2]: Tests/LibraryTests/SnailfishTests.swift
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
