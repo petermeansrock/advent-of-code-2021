@@ -25,6 +25,7 @@
 | 19 | [`BeaconLocator`][day19] | Part [1][day19-1], [2][day19-2] | None |
 | 20 | [`Image`, `EnhancementAlgorithm`][day20] | Part [1][day20-1], [2][day20-2] | None |
 | 21 | [`DeterministicGame`, `ExhaustiveGame`][day21] | Part [1][day21-1], [2][day21-2] | None |
+| 22 | [`CuboidReactor`][day22] | Part [1][day22-1], [2][day22-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -89,6 +90,9 @@
 [day21]: Sources/Library/Game.swift
 [day21-1]: Tests/LibraryTests/GameTests.swift#L25-L38
 [day21-2]: Tests/LibraryTests/GameTests.swift#L58-L71
+[day22]: Sources/Library/Cuboid.swift
+[day22-1]: Tests/LibraryTests/CuboidTests.swift#L80-L94
+[day22-2]: Tests/LibraryTests/CuboidTests.swift#L170-L183
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
