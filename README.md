@@ -84,7 +84,7 @@
 [day19-2]: Tests/LibraryTests/BeaconTests.swift#L186
 [day20]: Sources/Library/Enhance.swift
 [day20-1]: Tests/LibraryTests/EnhanceTests.swift#L75-L89
-[day20-2]: Tests/LibraryTests/EnhanceTests.swift#L91-105
+[day20-2]: Tests/LibraryTests/EnhanceTests.swift#L91-L105
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
