@@ -27,6 +27,7 @@
 | 21 | [`DeterministicGame`, `ExhaustiveGame`][day21] | Part [1][day21-1], [2][day21-2] | None |
 | 22 | [`CuboidReactor`][day22] | Part [1][day22-1], [2][day22-2] | None |
 | 23 | [`BurrowSolver`][day23] | Part [1][day23-1], [2][day23-2] | None |
+| 24 | [`Program`][day24] | Part [1][day24-1], [2][day24-2] | None |
 
 [day1]: Sources/Library/Sonar.swift
 [day1-1]: Tests/LibraryTests/SonarTests.swift#L30-L40
@@ -97,6 +98,9 @@
 [day23]: Sources/Library/Amphipod.swift
 [day23-1]: Tests/LibraryTests/AmphipodTests.swift#L26-L37
 [day23-2]: Tests/LibraryTests/AmphipodTests.swift#L62-L76
+[day24]: Sources/Library/Arithmetic.swift
+[day24-1]: Tests/LibraryTests/ArithmeticTests.swift#L49
+[day24-2]: Tests/LibraryTests/ArithmeticTests.swift#L50
 
 [zip]: Sources/Library/Sonar.swift#L45
 [expressions]: Sources/Library/Submarine.swift#L62
