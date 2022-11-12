@@ -1,5 +1,6 @@
 import AdventOfCode
 import Foundation
+import RegexBuilder
 
 /// Represents an operation to perform against a cuboid.
 ///
@@ -14,8 +15,60 @@ public struct CuboidInstruction {
     /// The z-axis range describing the bounds of the cuboid.
     public let zRange: ClosedRange<Int>
     fileprivate let switchState: SwitchState
-    private static let regex =
-        #"(on|off) x=(-?\d+)\.\.(-?\d+),y=(-?\d+)\.\.(-?\d+),z=(-?\d+)\.\.(-?\d+)"#
+
+    /// References to return from the subsequent regular expression.
+    private enum References {
+        static let switchState = Reference(SwitchState.self)
+        static let xRange = Reference(ClosedRange<Int>.self)
+        static let yRange = Reference(ClosedRange<Int>.self)
+        static let zRange = Reference(ClosedRange<Int>.self)
+
+        static func toRange(_ substring: Substring) -> ClosedRange<Int> {
+            let numbers = substring.split(separator: "..")
+            return Int(numbers[0])!...Int(numbers[1])!
+        }
+    }
+
+    /// Parses strings in the following form.
+    ///
+    /// ```
+    /// on x=10..12,y=10..12,z=10..12
+    /// ```
+    private static let instructionRegex = Regex {
+        // Represents a number (which may be negative)
+        let number = Regex {
+            Optionally("-")
+            OneOrMore(.digit)
+        }
+
+        // Represents a ".."-delimited range between two numbers
+        let range = Regex {
+            number
+            ".."
+            number
+        }
+
+        // Captures either "on" or "off"
+        TryCapture(as: References.switchState) {
+            ChoiceOf {
+                SwitchState.on.rawValue
+                SwitchState.off.rawValue
+            }
+        } transform: {
+            SwitchState(rawValue: String($0))
+        }
+
+        // The remaining lines capture the ranges for x, y, and z
+
+        " x="
+        TryCapture(range, as: References.xRange, transform: References.toRange)
+
+        ",y="
+        TryCapture(range, as: References.yRange, transform: References.toRange)
+
+        ",z="
+        TryCapture(range, as: References.zRange, transform: References.toRange)
+    }
 
     /// Creates a new instance.
     ///
@@ -27,17 +80,15 @@ public struct CuboidInstruction {
     /// ```
     ///
     /// - Parameter string: A string describing the instruction.
-    public init(string: String) {
-        let substrings = try! string.firstMatch(pattern: CuboidInstruction.regex)!
-            .captureGroups
-            .map { String($0.substring) }
-        let integers = substrings[1...]
-            .map { Int($0)! }
+    public init?(string: String) {
+        guard let match = string.wholeMatch(of: CuboidInstruction.instructionRegex) else {
+            return nil
+        }
 
-        self.switchState = SwitchState(rawValue: substrings[0])!
-        self.xRange = integers[0]...integers[1]
-        self.yRange = integers[2]...integers[3]
-        self.zRange = integers[4]...integers[5]
+        self.switchState = match[References.switchState]
+        self.xRange = match[References.xRange]
+        self.yRange = match[References.yRange]
+        self.zRange = match[References.zRange]
     }
 }
 
