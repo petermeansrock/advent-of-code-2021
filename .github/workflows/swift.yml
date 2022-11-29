@@ -13,15 +13,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-    runs-on: linux
-    strategy:
-      matrix:
-        image:
-        - "swift:5.7"
-    container:
-      image: ${{ matrix.image }}
-
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v2
