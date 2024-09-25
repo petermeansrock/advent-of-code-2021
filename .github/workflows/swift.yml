@@ -34,3 +34,4 @@ jobs:
         files: ${{join(fromJSON(steps.coverage-files.outputs.files), ',')}}
         fail_ci_if_error: true
         verbose: true
+        version: v0.7.3
