@@ -10,7 +10,7 @@ class CuboidTests: XCTestCase {
             on x=0..2,y=0..2,z=0..2
             off x=1..1,y=1..1,z=1..1
             """.components(separatedBy: .newlines)
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
             .filter(limitedInstructions)
         var reactor = CuboidReactor()
 
@@ -29,7 +29,7 @@ class CuboidTests: XCTestCase {
             off x=9..11,y=9..11,z=9..11
             on x=10..10,y=10..10,z=10..10
             """.components(separatedBy: .newlines)
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
             .filter(limitedInstructions)
         var reactor = CuboidReactor()
 
@@ -66,7 +66,7 @@ class CuboidTests: XCTestCase {
             on x=-54112..-39298,y=-85059..-49293,z=-27449..7877
             on x=967..23432,y=45373..81175,z=27513..53682
             """.components(separatedBy: .newlines)
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
             .filter(limitedInstructions)
         var reactor = CuboidReactor()
 
@@ -82,7 +82,7 @@ class CuboidTests: XCTestCase {
         let instructions = InputFile(bundle: Bundle.module, day: 22)
             .loadLines()
             .filter { $0.count > 0 }
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
             .filter(limitedInstructions)
         var reactor = CuboidReactor()
 
@@ -157,7 +157,7 @@ class CuboidTests: XCTestCase {
             on x=-53470..21291,y=-120233..-33476,z=-44150..38147
             off x=-93533..-4276,y=-16170..68771,z=-104985..-24507
             """.components(separatedBy: .newlines)
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
         var reactor = CuboidReactor()
 
         // Act
@@ -172,7 +172,7 @@ class CuboidTests: XCTestCase {
         let instructions = InputFile(bundle: Bundle.module, day: 22)
             .loadLines()
             .filter { $0.count > 0 }
-            .map { CuboidInstruction(string: $0) }
+            .map { CuboidInstruction(string: $0)! }
         var reactor = CuboidReactor()
 
         // Act
